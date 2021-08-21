@@ -4,7 +4,6 @@ import com.example.groupware.entity.board.BoardVO;
 import com.example.groupware.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,19 +12,19 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
+
     @Autowired
     private BoardService boardService;
 
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav){
-//        List<BoardVO> board = boardService.findBoardAll();
-        List<BoardVO> boardList = new ArrayList<>();
+        List<BoardVO> boardList = boardService.findBoardAll();
+//        List<BoardVO> boardList = new ArrayList<>();
         mav.setViewName("board/list");
         mav.addObject("boardlist", boardList);
         return mav;

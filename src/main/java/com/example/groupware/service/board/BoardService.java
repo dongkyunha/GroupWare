@@ -1,18 +1,19 @@
 package com.example.groupware.service.board;
 
 import com.example.groupware.entity.board.BoardVO;
+import com.example.groupware.repository.board.BoardRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BoardService {
-//    @Autowired
-//    private BoardRepository boardRepository;
+
+    private BoardRepository boardRepository;
 
     public List<BoardVO> findBoardAll(){
-//        return boardRepository.findBoardAll();
-        return null;
+        return boardRepository.findBoardAll();
+//        return null;
     }
     public BoardVO findByBoardId(String id){
 //        return boardRepository.findByBoardId(id);
