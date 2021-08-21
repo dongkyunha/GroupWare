@@ -22,7 +22,7 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    @GetMapping(value = "/list", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav){
 //        List<BoardVO> board = boardService.findBoardAll();
         List<BoardVO> boardList = new ArrayList<>();
@@ -38,12 +38,12 @@ public class BoardController {
         return mav;
     }
 
-    @PostMapping(value = "/insert", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "/insert")
     public ResponseEntity<BoardVO> insertBoard(BoardVO vo){
         return new ResponseEntity<BoardVO>(boardService.insertBoard(vo), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/update", produces = { MediaType.APPLICATION_JSON_VALUE })
+    @PostMapping(value = "/update")
     public ResponseEntity<BoardVO> updateBoard(BoardVO vo){
         boardService.updateBoard(vo);
         return new ResponseEntity<BoardVO>(vo, HttpStatus.OK);
