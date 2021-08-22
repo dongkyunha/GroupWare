@@ -2,6 +2,7 @@ package com.example.groupware.service.board;
 
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.repository.board.BoardRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +21,8 @@ public class BoardService {
     }
 
     public BoardMasterVO findByBoardId(int id){
-//        return boardRepository.findByBoardId(id);
-        return boardRepository.getById(id);
+        return boardRepository.findByBoardId(id);
+//        return boardRepository.getById(id);
     }
 
     public BoardMasterVO insertBoard(BoardMasterVO vo){
