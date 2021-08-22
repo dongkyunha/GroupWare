@@ -7,20 +7,25 @@
 <body>
 <h1>Board list</h1>
 <table>
-    <tr>
-        <th>id</th>
-        <th>title</th>
-        <th>content</th>
-        <th>writer</th>
-        <th>date</th>
-    </tr>
-    <tr th:each="board : ${boardList}">
-        <td th:text="${board.id}"></td>
-        <td th:text="${board.title}"></td>
-        <td th:text="${board.content}"></td>
-        <td th:text="${board.writer}"></td>
-        <td th:text="${board.date}"></td>
-    </tr>
+    <thead>
+        <tr>
+            <th>id</th>
+            <th>title</th>
+            <th>content</th>
+            <th>writer</th>
+            <th>date</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr th:each="board : ${boardList}">
+            <td th:text="${board.boardNo}"></td>
+            <td th:text="${board.title}"></td>
+            <td th:text="${board.content}"></td>
+            <td th:text="${board.writer}"></td>
+            <td th:text="${board.date}"></td>
+        </tr>
+    </tbody>
+
 </table>
 </body>
 </html>

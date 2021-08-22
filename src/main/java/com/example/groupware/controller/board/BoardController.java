@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,7 +25,6 @@ public class BoardController {
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav){
         List<BoardMasterVO> boardList = boardService.findAll();
-//        List<BoardVO> boardList = new ArrayList<>();
         mav.setViewName("board/list");
         mav.addObject("boardlist", boardList);
         return mav;
