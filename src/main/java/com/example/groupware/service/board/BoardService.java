@@ -5,6 +5,8 @@ import com.example.groupware.repository.board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,13 +18,16 @@ public class BoardService {
     public List<BoardMasterVO> findAll(){
         return boardRepository.findAll();
     }
+
     public BoardMasterVO findByBoardId(int id){
 //        return boardRepository.findByBoardId(id);
         return boardRepository.getById(id);
     }
+
     public BoardMasterVO insertBoard(BoardMasterVO vo){
         return boardRepository.saveAndFlush(vo);
     }
+
     public int updateBoard(BoardMasterVO vo){
 //        return boardRepository.updateBoard(vo);
         return 0;

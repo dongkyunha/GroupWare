@@ -9,6 +9,7 @@
 <body>
 <h1>Board list</h1>
 <button id="btnBoardInsert" type="button"><a href="/board/insertView">게시물 작성</a></button>
+
 <table>
     <thead>
         <tr>
@@ -24,17 +25,18 @@
     </thead>
     <tbody>
         <tr th:each="board : ${boardList}">
-            <td th:text="${board.boardNo}"></td>
-            <td th:text="${board.boardType}"></td>
-            <td th:text="${board.boardTitle}"></td>
-            <td th:text="${board.boardContent}"></td>
-            <td th:text="${board.boardId}"></td>
-            <td th:text="${board.boardCount}"></td>
-            <td th:text="${board.createDate}"></td>
-            <td th:text="${board.modifiedDate}"></td>
+            <td th:text="${board.boardNo}">boardNo</td>
+            <td th:text="${board.boardType}">boardType</td>
+            <td th:text="${board.boardTitle}">boardTitle</td>
+            <td th:text="${board.boardContent}">boardContent</td>
+            <td th:text="${board.boardId}">boardId</td>
+            <td th:text="${board.boardCount}">boardCount</td>
+            <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+            <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
         </tr>
     </tbody>
-    <button id="test" type="button">test</button>
 </table>
+<br>
+<button id="home" type="button">home</button>
 </body>
 </html>

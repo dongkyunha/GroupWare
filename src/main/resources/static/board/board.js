@@ -6,11 +6,24 @@ let main = (function(){
     return {
         init : function(){
             console.log("자바스크립트 바인딩 테스트");
+
+            Event.click();
         }
     }
 }());
 
-$(document).ready(function(){
+let Event = (function () {
+    return {
+        click : function(){
+            //UI 이벤트 처리
+            jQuery('#home').off('click').on('click', function (){
+                location.href = '/';
+            })
+        }
+    }
+}());
+
+jQuery(document).ready(function(){
     console.log("인잇");
     init();
 });

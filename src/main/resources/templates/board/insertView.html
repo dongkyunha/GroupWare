@@ -3,13 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        span {
+            display: inline-block;
+            width: 100px;
+            margin-top: 15px;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        </style>
+    </style>
 </head>
 <body>
 <form method="post" action="/board/insert">
-    <br/>게시판 타입: <input name="boardType"></input>
-    <br/>제목 : <input name="boardTitle"></input>
-    <br/>내용 : <input name="boardContent"></input>
-    <br/>작성자 : <input name="boardId"></input>
+    <br/><span>게시판 타입: </span><input name="boardType"/>
+    <br/><span>제목 : </span><input name="boardTitle"/>
+    <br/><span>내용 : </span><input name="boardContent"/>
+    <br/><span>작성자 : </span><input name="boardId"/>
     <br/>
     <button name="btnBoardInsert" type="submit">저장</button>
     <button name="btnCancel" type="button"><a href="/board/list">취소</a></button>
