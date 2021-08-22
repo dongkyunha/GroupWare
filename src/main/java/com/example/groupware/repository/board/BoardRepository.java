@@ -3,6 +3,7 @@ package com.example.groupware.repository.board;
 import com.example.groupware.entity.board.BoardMasterVO;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -12,8 +13,10 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
     public List<BoardMasterVO> findAll();
 
-    @Query("SELECT boardNo, boardTitle FROM BoardMasterVO WHERE boardNo = :id")
-    public BoardMasterVO findByBoardId(int id);
+    public BoardMasterVO getById(@Param("boardNo") int boardNo);
+
+    @Query("SELECT boardTitle FROM BoardMasterVO WHERE boardNo = :id ")
+    public BoardMasterVO findByBoardId(@Param("id") int id);
 
     public BoardMasterVO saveAndFlush(BoardMasterVO vo);
 //    public int updateBoard(BoardVO vo);

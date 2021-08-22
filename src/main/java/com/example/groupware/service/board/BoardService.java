@@ -17,7 +17,8 @@ public class BoardService {
         return boardRepository.findAll();
     }
     public BoardMasterVO findByBoardId(int id){
-        return boardRepository.findByBoardId(id);
+//        return boardRepository.findByBoardId(id);
+        return boardRepository.getById(id);
     }
     public BoardMasterVO insertBoard(BoardMasterVO vo){
         return boardRepository.saveAndFlush(vo);
