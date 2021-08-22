@@ -6,11 +6,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,9 +27,15 @@ public class BoardController {
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav){
         List<BoardMasterVO> boardList = boardService.findAll();
+        System.out.println("테스트");
         mav.setViewName("board/list");
-        mav.addObject("boardlist", boardList);
+        mav.addObject("boardList", boardList);
         return mav;
+    }
+
+    @GetMapping(value = "/insertView")
+    public String insertView(){
+        return "board/insertView";
     }
 
     @GetMapping(value = "/{id}")
@@ -38,8 +46,9 @@ public class BoardController {
     }
 
     @PostMapping(value = "/insert")
-    public ResponseEntity<BoardMasterVO> insertBoard(BoardMasterVO vo){
-        return new ResponseEntity<BoardMasterVO>(boardService.insertBoard(vo), HttpStatus.OK);
+    public String insertBoard(BoardMasterVO vo){
+        boardService.insertBoard(vo);
+        return "redirect:/board/list";
     }
 
     @PostMapping(value = "/update")

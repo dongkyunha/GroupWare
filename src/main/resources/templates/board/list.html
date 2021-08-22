@@ -1,28 +1,35 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
 <h1>Board list</h1>
+<button id="btnBoardInsert" type="button"><a href="/board/insertView">게시물 작성</a></button>
 <table>
     <thead>
         <tr>
-            <th>id</th>
-            <th>title</th>
-            <th>content</th>
-            <th>writer</th>
-            <th>date</th>
+            <th>게시물 번호</th>
+            <th>게시물 타입</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+            <th>조회수</th>
+            <th>작성일</th>
+            <th>수정일</th>
         </tr>
     </thead>
     <tbody>
         <tr th:each="board : ${boardList}">
             <td th:text="${board.boardNo}"></td>
-            <td th:text="${board.title}"></td>
-            <td th:text="${board.content}"></td>
-            <td th:text="${board.writer}"></td>
-            <td th:text="${board.date}"></td>
+            <td th:text="${board.boardType}"></td>
+            <td th:text="${board.boardTitle}"></td>
+            <td th:text="${board.boardContent}"></td>
+            <td th:text="${board.boardId}"></td>
+            <td th:text="${board.boardCount}"></td>
+            <td th:text="${board.createDate}"></td>
+            <td th:text="${board.modifiedDate}"></td>
         </tr>
     </tbody>
 

@@ -20,8 +20,7 @@ public class BoardService {
         return boardRepository.findByBoardId(id);
     }
     public BoardMasterVO insertBoard(BoardMasterVO vo){
-//        return boardRepository.insertBoard(vo);
-        return null;
+        return boardRepository.saveAndFlush(vo);
     }
     public int updateBoard(BoardMasterVO vo){
 //        return boardRepository.updateBoard(vo);

@@ -15,7 +15,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
     @Query("SELECT boardNo, boardTitle FROM BoardMasterVO WHERE boardNo = :id")
     public BoardMasterVO findByBoardId(int id);
 
-//    public BoardMasterVO insertBoard(BoardVO vo);
+    public BoardMasterVO saveAndFlush(BoardMasterVO vo);
 //    public int updateBoard(BoardVO vo);
 //    public int deleteBoard(int id);
 }
