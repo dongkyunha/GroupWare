@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
-    <script type="text/javascript" th:src="@{/static/board/board.js}"></script>
+    <script type="text/javascript" th:src="@{/static/board/insert.js}"></script>
 </head>
 <body>
 <h1>Board list</h1>
@@ -25,7 +25,7 @@
     </thead>
     <tbody>
         <tr th:each="board : ${boardList}">
-            <td th:text="${board.boardNo}">boardNo</td>
+            <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
             <td th:text="${board.boardType}">boardType</td>
             <td th:text="${board.boardTitle}">boardTitle</td>
             <td th:text="${board.boardContent}">boardContent</td>

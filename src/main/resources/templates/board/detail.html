@@ -3,8 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        th{
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-<p th:text="${board}"></p>
+    <p th:text="${board}" hidden></p>
+
+    <table>
+        <tr>
+            <th>게시물 번호</th>
+            <td><span th:text="${board.boardNo}">boardNo</span></a></td>
+        </tr>
+        <tr>
+            <th>게시물 타입</th>
+            <td th:text="${board.boardType}">boardType</td>
+        </tr>
+        <tr>
+            <th>제목</th>
+            <td th:text="${board.boardTitle}">boardTitle</td>
+        </tr>
+        <tr>
+            <th>내용</th>
+            <td th:text="${board.boardContent}">boardContent</td>
+        </tr>
+        <tr>
+            <th>작성자</th>
+            <td th:text="${board.boardId}">boardId</td>
+        </tr>
+        <tr>
+            <th>조회수</th>
+            <td th:text="${board.boardCount}">boardCount</td>
+        </tr>
+        <tr>
+            <th>작성일</th>
+            <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+        </tr>
+        <tr>
+            <th>마지막 수정일</th>
+            <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
+        </tr>
+    </table>
+
+    <button type="button" id="updateDetail">수정</button>
+    <button type="button" onclick="location.href='/board/list'">목록</button>
 </body>
 </html>
