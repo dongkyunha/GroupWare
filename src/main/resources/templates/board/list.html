@@ -5,11 +5,22 @@
     <title>Title</title>
     <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
     <script type="text/javascript" th:src="@{/static/board/insert.js}"></script>
+    <style>
+        th, td {
+            display: inline-block;
+            border: 1px solid #8B2D2DFF;
+            width: 150px;
+            margin-top: 15px;
+            margin-left: 10px;
+            font-weight: bold;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
 <h1>Board list</h1>
 <button id="btnBoardInsert" type="button"><a href="/board/insertView">게시물 작성</a></button>
-
+<br>
 <table>
     <thead>
         <tr>
