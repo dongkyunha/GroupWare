@@ -2,27 +2,38 @@ package com.example.groupware.repository.board;
 
 import com.example.groupware.entity.board.BoardMasterVO;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
 public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
-    public List<BoardMasterVO> findAll();
+    //selectAll
+    List<BoardMasterVO> findAll();
 
-    public BoardMasterVO getById(@Param("boardNo") int boardNo);
-
+    //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")
-    public BoardMasterVO findByBoardId(@Param("id") int id);
+    BoardMasterVO findByBoardId(@Param("id") int id);
+//    BoardMasterVO getById(@Param("boardNo") int boardNo);  //JpaRepository 제공
 
-    public BoardMasterVO saveAndFlush(BoardMasterVO vo);
+    //insert
+    BoardMasterVO saveAndFlush(BoardMasterVO vo);
+
+    //updateCount
+    @Transactional
+    @Modifying
+    @Query("UPDATE BoardMasterVO SET boardCount = :count WHERE boardNo = :id")
+    int updateBoardId(@Param("id") int id, @Param("count") int count);
 
 //    @Query("UPDATE BoardMasterVO AS BM SET BM.boardTitle = :title WHERE BM.boardNo = :id")
-//    public int updateBoard(BoardMasterVO vo);
+//    int updateBoard(BoardMasterVO vo);
 
+    //delete
 //    public int deleteBoard(int id);
 }
 

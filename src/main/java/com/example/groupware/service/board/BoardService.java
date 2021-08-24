@@ -21,8 +21,16 @@ public class BoardService {
     }
 
     public BoardMasterVO findByBoardId(int id){
-        return boardRepository.findByBoardId(id);
-//        return boardRepository.getById(id);
+        BoardMasterVO resultData = boardRepository.findByBoardId(id);
+
+        int count = resultData.getBoardCount() + 1;
+        int result = boardRepository.updateBoardId(id, count);
+
+        if(result >0){
+            resultData.setBoardCount(count);
+        }
+
+        return resultData;
     }
 
     public BoardMasterVO insertBoard(BoardMasterVO vo){

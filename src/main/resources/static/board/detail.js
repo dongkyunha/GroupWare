@@ -16,7 +16,21 @@ let Event = (function () {
             //UI 이벤트 처리
             jQuery('#updateDetail').off('click').on('click', function (){
                 //데이터를 가지고 이동
-                location.href = '/';
+                var params={
+                    boardNO : jQuery('#boardNo').val()
+                };
+
+                $.ajax({
+                    url: "/board/insertView",
+                    data: params,
+                    type:"POST",
+                    success: function(result){
+
+                    },
+                    error: function (e){
+
+                    }
+                });
             })
         }
     }
