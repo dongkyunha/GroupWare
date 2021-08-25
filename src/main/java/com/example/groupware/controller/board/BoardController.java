@@ -55,8 +55,8 @@ public class BoardController {
     }
 
     @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<Void> deleteBoard(@PathVariable("id") int id){
-        boardService.deleteBoard(id);
+    public ResponseEntity<Void> deleteBoard(@PathVariable("BoardMasterVO") BoardMasterVO request){
+        boardService.deleteBoard(request.getBoardNo());
         return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
     }
 }

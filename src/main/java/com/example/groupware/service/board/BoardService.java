@@ -29,7 +29,6 @@ public class BoardService {
         if(result >0){
             resultData.setBoardCount(count);
         }
-
         return resultData;
     }
 

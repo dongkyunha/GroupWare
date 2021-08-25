@@ -14,14 +14,23 @@ let Event = (function () {
     return {
         click : function(){
             //UI 이벤트 처리
-            jQuery('#updateDetail').off('click').on('click', function (){
-                //데이터를 가지고 이동
+            jQuery('#btnUpdateDetail').off('click').on('click', function (){
+                jQuery('#updateView').show();
+                jQuery('#detailView').hide();
+            });
+
+            jQuery('#btnUpdateCancel').off('click').on('click', function (){
+                jQuery('#detailView').show();
+                jQuery('#updateView').hide();
+            });
+
+            jQuery('#btnBoardDelete').off("click").on('click', function (){
                 var params={
-                    boardNO : jQuery('#boardNo').val()
+                    boardNo : jQuery('#boardNo').val()
                 };
 
                 $.ajax({
-                    url: "/board/insertView",
+                    url: "/board/delete",
                     data: params,
                     type:"POST",
                     success: function(result){
@@ -31,7 +40,7 @@ let Event = (function () {
 
                     }
                 });
-            })
+            });
         }
     }
 }());

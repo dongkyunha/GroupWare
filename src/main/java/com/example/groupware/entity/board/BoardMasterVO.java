@@ -45,6 +45,4 @@ public class BoardMasterVO implements Serializable {
 
     @Column(name = "modified_date")
     private LocalDateTime modifiedDate = LocalDateTime.now();
-
-
 }
