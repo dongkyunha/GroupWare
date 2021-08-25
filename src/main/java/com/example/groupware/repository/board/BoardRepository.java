@@ -27,11 +27,13 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
     //updateCount
     @Transactional
     @Modifying
-    @Query("UPDATE BoardMasterVO SET boardCount = :count WHERE boardNo = :id")
+    @Query(value="UPDATE BoardMasterVO SET boardCount = :count WHERE boardNo = :id")
     int updateBoardId(@Param("id") int id, @Param("count") int count);
 
-//    @Query("UPDATE BoardMasterVO AS BM SET BM.boardTitle = :title WHERE BM.boardNo = :id")
-//    int updateBoard(BoardMasterVO vo);
+//    @Modifying
+//    @Query("UPDATE BoardMasterVO SET boardType = :boardType, boardTitle = :boardTitle, boardContent = :boardContent, boardId = :boardId WHERE boardNo = :id")
+//    @Query(value = "UPDATE board_master SET board_type = :boardType, board_title = :boardTitle, boardContent = :boardContent, board_id = :boardId WHERE board_no = :boardNo", nativeQuery = true)
+//    int updateBoard(@Param("BoardMasterVO") BoardMasterVO vo);
 
     //delete
 //    public int deleteBoard(int id);

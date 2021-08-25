@@ -6,10 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -35,10 +32,10 @@ public class BoardController {
         return "board/insertView";
     }
 
-    @GetMapping(value = "/{id}")
-    public ModelAndView findByBoardId(ModelAndView mav, @PathVariable("id") int id){
+    @GetMapping(value = "/{no}")
+    public ModelAndView findByBoardId(ModelAndView mav, @PathVariable("no") int no){
         mav.setViewName("board/detail");
-        mav.addObject("board", boardService.findByBoardId(id));
+        mav.addObject("board", boardService.findByBoardId(no));
         return mav;
     }
 
@@ -49,9 +46,11 @@ public class BoardController {
     }
 
     @PostMapping(value = "/update")
-    public ResponseEntity<BoardMasterVO> updateBoard(BoardMasterVO vo){
-        boardService.updateBoard(vo);
-        return new ResponseEntity<BoardMasterVO>(vo, HttpStatus.OK);
+    public String updateBoard(BoardMasterVO request){
+        boardService.updateBoard(request);
+        int no = request.getBoardNo();
+//        return new ResponseEntity<BoardMasterVO>(request, HttpStatus.OK);
+        return "redirect:/board/"+no;
     }
 
     @GetMapping(value = "/delete/{id}")
