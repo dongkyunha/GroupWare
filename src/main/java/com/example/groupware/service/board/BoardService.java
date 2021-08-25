@@ -36,11 +36,11 @@ public class BoardService {
         return boardRepository.saveAndFlush(vo);
     }
 
-    public int updateBoard(BoardMasterVO vo){
-        System.out.println(vo);
+    public int updateBoard(BoardMasterVO params){
+        System.out.println(params);
 //        return boardRepository.saveAndFlush(vo);        //update는 되나 전체 merge 기준이라 count 초기화됨
-//        return boardRepository.updateBoard(vo);
-        return 0;
+        return boardRepository.updateBoard(params);
+//        return 0;
     }
     public int deleteBoard(int id){
 //        return boardRepository.deleteBoard(id);
