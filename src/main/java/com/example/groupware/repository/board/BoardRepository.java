@@ -15,7 +15,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
     //selectAll
     List<BoardMasterVO> findAll();
-//    List<BoardMasterVO> findAllByOrderByRegDateDesc();
+//    List<BoardMasterVO> findAllOrderByRegDateDesc();
 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")
@@ -33,9 +33,8 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
     @Transactional
     @Modifying
-    @Query("UPDATE BoardMasterVO SET boardType = :#{#BoardMasterVO.boardType}, boardTitle = :#{#BoardMasterVO.boardTitle}, boardContent = :#{#BoardMasterVO.boardContent}, boardId = :#{#BoardMasterVO.boardId} WHERE boardNo = :#{#BoardMasterVO.boardNo}")
-//    @Query(value = "UPDATE board_master SET board_type = :boardType, board_title = :boardTitle, boardContent = :boardContent, board_id = :boardId WHERE board_no = :boardNo", nativeQuery = true)
-    int updateBoard(@Param("BoardMasterVO") BoardMasterVO params);
+    @Query("UPDATE BoardMasterVO SET boardType = :#{#params.boardType}, boardTitle = :#{#params.boardTitle}, boardContent = :#{#params.boardContent}, boardId = :#{#params.boardId} WHERE boardNo = :#{#params.boardNo}")
+    int updateBoard(@Param("params") BoardMasterVO params);
 
     //delete
 //    public int deleteBoard(int id);
