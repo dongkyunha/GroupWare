@@ -43,7 +43,7 @@ public class BoardService {
 //        return 0;
     }
     public int deleteBoard(int id){
-//        return boardRepository.deleteBoard(id);
-        return 0;
+        return boardRepository.deleteBoard(id, "Y");
+//        return 0;
     }
 }

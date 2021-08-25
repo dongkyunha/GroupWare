@@ -40,6 +40,9 @@ public class BoardMasterVO implements Serializable {
     @Column(name = "board_count")
     private int boardCount;
 
+    @Column(name = "is_del")
+    private String isDel;
+
     @Column(name = "create_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
