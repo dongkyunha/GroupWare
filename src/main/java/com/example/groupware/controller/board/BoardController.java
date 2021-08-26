@@ -28,10 +28,11 @@ public class BoardController {
 
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
-        List<BoardMasterVO> boardList = boardService.findAll();
+//        List<BoardMasterVO> boardList = boardService.findAll();
 //        System.out.println("테스트");
-        pageable = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC, "boardNo"));
+        pageable = PageRequest.of(pageable.getPageNumber(),10, Sort.by(Sort.Direction.DESC, "boardNo"));
 
+        // board/list?page=1 ==> pageable 에 page 로 들어감
         Page<BoardMasterVO> pageList = boardService.findAll2(pageable);
 
         mav.setViewName("board/list");
