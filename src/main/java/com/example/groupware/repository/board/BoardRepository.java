@@ -15,7 +15,9 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
     //selectAll
     List<BoardMasterVO> findAll();
-//    List<BoardMasterVO> findAllOrderByRegDateDesc();
+
+    //selectAll(역순)
+    List<BoardMasterVO> findAllByOrderByBoardNoDesc();
 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")

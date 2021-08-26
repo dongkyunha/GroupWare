@@ -2,12 +2,9 @@ package com.example.groupware.service.board;
 
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.repository.board.BoardRepository;
-import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Service
@@ -17,7 +14,9 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     public List<BoardMasterVO> findAll(){
-        return boardRepository.findAll();
+//        return boardRepository.findAll();
+        //역순
+        return boardRepository.findAllByOrderByBoardNoDesc();
     }
 
     public BoardMasterVO findByBoardId(int id){
