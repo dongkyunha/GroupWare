@@ -1,6 +1,8 @@
 package com.example.groupware.repository.board;
 
 import com.example.groupware.entity.board.BoardMasterVO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,9 +17,12 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
 
     //selectAll
     List<BoardMasterVO> findAll();
-
     //selectAll(역순)
     List<BoardMasterVO> findAllByOrderByBoardNoDesc();
+
+    //selectAll pageable
+    @Override
+    Page<BoardMasterVO> findAll(Pageable pageable);
 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")

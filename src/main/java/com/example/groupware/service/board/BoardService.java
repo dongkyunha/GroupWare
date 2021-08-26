@@ -3,6 +3,8 @@ package com.example.groupware.service.board;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.repository.board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,6 +19,9 @@ public class BoardService {
 //        return boardRepository.findAll();
         //역순
         return boardRepository.findAllByOrderByBoardNoDesc();
+    }
+    public Page<BoardMasterVO> findAll2(Pageable pageable){
+        return boardRepository.findAll(pageable);
     }
 
     public BoardMasterVO findByBoardId(int id){
