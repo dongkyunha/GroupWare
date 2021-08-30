@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.List;
-
 @Controller
 @RequestMapping(value = "/board")
 public class BoardController {
@@ -28,7 +26,7 @@ public class BoardController {
 
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
-//        List<BoardMasterVO> boardList = boardService.findAll();
+//        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
 //        System.out.println("테스트");
         pageable = PageRequest.of(pageable.getPageNumber(),10, Sort.by(Sort.Direction.DESC, "boardNo"));
 
@@ -63,6 +61,9 @@ public class BoardController {
         boardService.updateBoard(request);
         int no = request.getBoardNo();
 //        return new ResponseEntity<BoardMasterVO>(request, HttpStatus.OK);
+//        ResultSet<String> resultSet = new ResultSet<>();
+//        resultSet.setResultList("");
+        
         return "redirect:/board/"+no;
     }
 
