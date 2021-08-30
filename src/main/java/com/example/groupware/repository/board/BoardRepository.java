@@ -43,7 +43,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
     //updateDetail
     @Transactional
     @Modifying
-    @Query("UPDATE BoardMasterVO SET boardType = :#{#params.boardType}, boardTitle = :#{#params.boardTitle}, boardContent = :#{#params.boardContent}, boardId = :#{#params.boardId} WHERE boardNo = :#{#params.boardNo}")
+    @Query("UPDATE BoardMasterVO SET boardType = :#{#params.boardType}, boardTitle = :#{#params.boardTitle}, boardContent = :#{#params.boardContent}, boardId = :#{#params.boardId}, boardCount = :#{#params.boardCount}, modifiedDate =:#{#params.modifiedDate} WHERE boardNo = :#{#params.boardNo}")
     int updateBoard(@Param("params") BoardMasterVO params);
 
     //delete

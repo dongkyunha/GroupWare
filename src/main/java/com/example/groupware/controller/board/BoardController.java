@@ -11,10 +11,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -24,12 +21,14 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    //clean code
     @GetMapping(value = "/list")
+//    @RequestMapping(value ="/list", method = RequestMethod.GET)
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
         int page = 0;
         if(pageable.getPageNumber() != 0){
             page = pageable.getPageNumber() -1;
-            System.out.println(page);
+            System.out.println("page : " + page);
         }
 
 //        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
@@ -65,6 +64,7 @@ public class BoardController {
 
     @PostMapping(value = "/update")
     public String updateBoard(BoardMasterVO request){
+        request.setBoardCount(request.getBoardCount()-1);
         boardService.updateBoard(request);
         int no = request.getBoardNo();
 //        return new ResponseEntity<BoardMasterVO>(request, HttpStatus.OK);

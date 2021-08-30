@@ -41,7 +41,6 @@ public class BoardService {
     }
 
     public int updateBoard(BoardMasterVO params){
-//        System.out.println(params);
 //        return boardRepository.saveAndFlush(vo);        //update는 되나 전체 merge 기준이라 count 초기화됨
         return boardRepository.updateBoard(params);
     }

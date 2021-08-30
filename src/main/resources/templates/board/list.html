@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
-    <script type="text/javascript" th:src="@{/static/board/insert.js}"></script>
     <style>
         th, td {
             display: inline-block;
@@ -19,6 +17,16 @@
         a:visited {text-decoration: none; color: black;}
         a:active {text-decoration: none; color: grey;}
         a:hover {text-decoration: underline; color: red;}
+        ul {
+            list-style: none;
+            margin: 0 auto;
+        }
+        li {
+            margin: 0 auto;
+            padding: 10px;
+            border : 0;
+            float: left;
+        }
     </style>
 </head>
 <body>
@@ -77,18 +85,8 @@
             </li>
         </ul>
     </nav>
-    <style>
-        ul {
-            list-style: none;
-            margin: 0 auto;
-        }
-        li {
-            margin: 0 auto;
-            padding: 10px;
-            border : 0;
-            float: left;
-        }
-    </style>
 </footer>
 </body>
+<script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
+<script type="text/javascript" th:src="@{/static/board/insert.js}"></script>
 </html>
