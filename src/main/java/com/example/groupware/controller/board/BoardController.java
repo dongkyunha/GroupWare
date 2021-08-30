@@ -26,9 +26,16 @@ public class BoardController {
 
     @GetMapping(value = "/list")
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
+        int page = 0;
+        if(pageable.getPageNumber() != 0){
+            page = pageable.getPageNumber() -1;
+            System.out.println(page);
+        }
+
 //        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
 //        System.out.println("테스트");
-        pageable = PageRequest.of(pageable.getPageNumber(),10, Sort.by(Sort.Direction.DESC, "boardNo"));
+
+        pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
 
         // board/list?page=1 ==> pageable 에 page 로 들어감
         Page<BoardMasterVO> pageList = boardService.findAll2(pageable);
