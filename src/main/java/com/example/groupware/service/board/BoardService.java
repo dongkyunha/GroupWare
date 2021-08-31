@@ -16,10 +16,12 @@ public class BoardService {
     private BoardRepository boardRepository;
 
     public List<BoardMasterVO> findAll(){
+        //순서
 //        return boardRepository.findAll();
         //역순
         return boardRepository.findAllByOrderByBoardNoDesc();
     }
+
     public Page<BoardMasterVO> findAll2(Pageable pageable){
         return boardRepository.findAll(pageable);
     }

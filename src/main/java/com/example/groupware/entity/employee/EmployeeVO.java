@@ -19,7 +19,7 @@ public class EmployeeVO implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "employee_id")
+    @Column(name = "employee_id", nullable = false)
     private String employeeId;
 
     @Column(name = "employee_name")

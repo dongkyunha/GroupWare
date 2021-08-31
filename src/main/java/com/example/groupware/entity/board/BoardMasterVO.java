@@ -3,6 +3,7 @@ package com.example.groupware.entity.board;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.DynamicInsert;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = false)
+@DynamicInsert
 public class BoardMasterVO implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,7 +30,7 @@ public class BoardMasterVO implements Serializable {
     @Column(name = "board_type")
     private String boardType;
 
-    @Column(name = "board_content")
+    @Column(name = "board_content", length = 500)
     private String boardContent;
 
     @Column(name = "board_id")
@@ -37,10 +39,10 @@ public class BoardMasterVO implements Serializable {
     @Column(name = "board_password")
     private String boardPassword;
 
-    @Column(name = "board_count")
+    @Column(name = "board_count", nullable = false, columnDefinition = "int default 0")
     private int boardCount;
 
-    @Column(name = "is_del")
+    @Column(name = "is_del", columnDefinition = "varchar(1) default 'N'")
     private String isDel;
 
     @Column(name = "create_date")
