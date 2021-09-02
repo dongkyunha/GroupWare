@@ -31,7 +31,7 @@ public class TodoSpecification {
             public Predicate toPredicate(Root<BoardMasterVO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 // 2) like
                 return criteriaBuilder.like(root.get("contents"), "%" + contents + "%");
-                // content like = ?
+                // content like "?"
             }
         };
     }
@@ -42,9 +42,8 @@ public class TodoSpecification {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 // 1) equal
-                return criteriaBuilder.like(root.get("empName"), "%" + empName
-                        + "%");
-                //employee_name like ?
+                return criteriaBuilder.like(root.get("empName"), "%" + empName + "%");
+                //employee_name like "?"
             }
         };
     }
