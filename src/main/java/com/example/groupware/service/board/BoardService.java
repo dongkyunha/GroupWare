@@ -1,12 +1,15 @@
 package com.example.groupware.service.board;
 
+import com.example.groupware.container.TodoSpecification;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.repository.board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,6 +27,26 @@ public class BoardService {
 
     public Page<BoardMasterVO> findAll2(Pageable pageable){
         return boardRepository.findAll(pageable);
+    }
+
+    public Page<BoardMasterVO> findAllWhere(Pageable pageable){
+//        BoardMasterVO request = new BoardMasterVO();
+//        Long todoId = 0L;
+//        LocalDateTime startDatetime = LocalDateTime.now();
+//        LocalDateTime endDatetime = LocalDateTime.now();
+
+        String isDel = "N";
+        Specification<BoardMasterVO> spec = Specification.where(TodoSpecification.equalIsDel(isDel));
+
+//        if(request.getBoardContent() != null) {
+//            spec = spec.and(TodoSpecification.likeContents(request.getBoardContent()));
+//        }
+//
+//        if(startDatetime != null && endDatetime != null) {
+//            spec = spec.and(TodoSpecification.betweenCreatedDate(startDatetime, endDatetime));
+//        }
+
+        return boardRepository.findAll(spec, pageable);
     }
 
     public BoardMasterVO findByBoardId(int id){

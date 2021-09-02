@@ -21,8 +21,24 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
-    //clean code
     @GetMapping(value = "/list")
+    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable){
+        int page = 0;
+        if(pageable.getPageNumber() != 0){
+            page = pageable.getPageNumber() -1;
+            System.out.println("page : " + page);
+        }
+        pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
+
+        Page<BoardMasterVO> pageList = boardService.findAllWhere(pageable);
+
+        mav.setViewName("board/list");
+        mav.addObject("boardList", pageList);
+        return mav;
+    }
+
+    //clean code
+    @GetMapping(value = "/list2")
 //    @RequestMapping(value ="/list", method = RequestMethod.GET)
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
         int page = 0;
@@ -32,7 +48,6 @@ public class BoardController {
         }
 
 //        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
-//        System.out.println("테스트");
 
         pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
 
@@ -43,6 +58,7 @@ public class BoardController {
         mav.addObject("boardList", pageList);
         return mav;
     }
+
 
     @GetMapping(value = "/insertView")
     public String insertView(){
@@ -74,9 +90,16 @@ public class BoardController {
         return "redirect:/board/"+no;
     }
 
-    @GetMapping(value = "/delete/{id}")
-    public ResponseEntity<Void> deleteBoard(@PathVariable("BoardMasterVO") BoardMasterVO request){
-        boardService.deleteBoard(request.getBoardNo());
-        return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+    @PostMapping(value = "/delete")
+    public String deleteBoard(BoardMasterVO request){
+        int result = boardService.deleteBoard(request.getBoardNo());
+
+        if(result > 0){
+            //todo true
+        }else{
+            System.out.println("저장에 문제 있음");
+//            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+        }
+        return "redirect:/board/list";
     }
 }

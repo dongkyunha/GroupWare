@@ -3,7 +3,9 @@ package com.example.groupware.repository.board;
 import com.example.groupware.entity.board.BoardMasterVO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,7 +15,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 @Repository
-public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
+public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer>, JpaSpecificationExecutor<BoardMasterVO> {
 
     //selectAll
     List<BoardMasterVO> findAll();
@@ -23,6 +25,9 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
     //selectAll pageable
     @Override
     Page<BoardMasterVO> findAll(Pageable pageable);
+
+    //selectAll where + pageable
+    Page<BoardMasterVO> findAll(Specification<BoardMasterVO> spec, Pageable pageable);
 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")
@@ -49,7 +54,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer> {
     //delete
     @Transactional
     @Modifying
-    @Query(value="UPDATE BoardMasterVO SET isDel = :isDel WHERE boardNo = :id")
+    @Query(value="UPDATE BoardMasterVO SET isDel = :isDel, modifiedDate = CURRENT_TIMESTAMP WHERE boardNo = :id")
     int deleteBoard(int id, String isDel);
 }
 
