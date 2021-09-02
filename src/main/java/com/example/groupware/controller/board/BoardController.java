@@ -83,10 +83,7 @@ public class BoardController {
         request.setBoardCount(request.getBoardCount()-1);
         boardService.updateBoard(request);
         int no = request.getBoardNo();
-//        return new ResponseEntity<BoardMasterVO>(request, HttpStatus.OK);
-//        ResultSet<String> resultSet = new ResultSet<>();
-//        resultSet.setResultList("");
-        
+
         return "redirect:/board/"+no;
     }
 
@@ -96,10 +93,11 @@ public class BoardController {
 
         if(result > 0){
             //todo true
+            return "redirect:/board/list";
         }else{
             System.out.println("저장에 문제 있음");
-//            return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
+            int no = request.getBoardNo();
+            return "redirect:/board/"+no;
         }
-        return "redirect:/board/list";
     }
 }
