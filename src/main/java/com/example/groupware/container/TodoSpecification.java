@@ -36,6 +36,20 @@ public class TodoSpecification {
         };
     }
 
+    //like Emp Nm
+    public static <T> Specification<T> likeEmpName(String empName) {
+        return new Specification<T>() {
+            @Override
+            public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                // 1) equal
+                return criteriaBuilder.like(root.get("empName"), "%" + empName
+                        + "%");
+                //employee_name like ?
+            }
+        };
+    }
+
+
     //between Search Term
     public static <T> Specification<T> betweenCreatedDate(LocalDateTime startDatetime, LocalDateTime endDatetime) {
         return new Specification<T>() {
@@ -54,7 +68,7 @@ public class TodoSpecification {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 return criteriaBuilder.equal(root.get("isDel"), isDel);
-                //isDel = ?
+                //is_del = ?
             }
         };
     }
