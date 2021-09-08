@@ -1,5 +1,6 @@
 package com.example.groupware.controller.board;
 
+import com.example.groupware.container.ResultSet;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,11 +9,12 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -29,7 +31,6 @@ public class BoardController {
             System.out.println("page : " + page);
         }
         pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
-
         Page<BoardMasterVO> pageList = boardService.findAllWhere(pageable);
 
         mav.setViewName("board/list");
@@ -88,16 +89,21 @@ public class BoardController {
     }
 
     @PostMapping(value = "/delete")
-    public String deleteBoard(BoardMasterVO request){
+    @ResponseBody
+    public ResultSet<String> deleteBoard(BoardMasterVO request){
+        ResultSet<String> resultSet = new ResultSet<>();
+
+        Map<String,Object> resultList = new HashMap<>();
         int result = boardService.deleteBoard(request.getBoardNo());
 
         if(result > 0){
-            //todo true
-            return "redirect:/board/list";
+            resultSet.setResponseMessage("success");
         }else{
-            System.out.println("저장에 문제 있음");
-            int no = request.getBoardNo();
-            return "redirect:/board/"+no;
+            resultList.put("boardNo",request.getBoardNo());
+            resultSet.setResponseMessage("fail");
         }
+        resultList.put("result",result);
+        resultSet.setResultList(resultList);
+        return resultSet;
     }
 }

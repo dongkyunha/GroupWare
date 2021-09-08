@@ -31,13 +31,18 @@ let Event = (function () {
 
                 $.ajax({
                     url: "/board/delete",
+                    dataType: "json",
                     data: params,
                     type:"POST",
                     success: function(result){
-
-                    },
-                    error: function (e){
-
+                        console.log("성공 : " + result);
+                        if(result.responseMessage == "success"){
+                            location.href="/board/list";
+                        }else{
+                            var result = result.resultList;
+                            console.log(result);
+                            // location.href="/board/" +no;
+                        }
                     }
                 });
             });
