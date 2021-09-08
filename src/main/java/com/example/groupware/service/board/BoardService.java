@@ -30,13 +30,7 @@ public class BoardService {
     }
 
     public Page<BoardMasterVO> findAllWhere(Pageable pageable){
-//        BoardMasterVO request = new BoardMasterVO();
-//        Long todoId = 0L;
-//        LocalDateTime startDatetime = LocalDateTime.now();
-//        LocalDateTime endDatetime = LocalDateTime.now();
-
-        String isDel = "N";
-        Specification<BoardMasterVO> spec = Specification.where(TodoSpecification.equalIsDel(isDel));
+        Specification<BoardMasterVO> spec = Specification.where(TodoSpecification.equalIsDel("N"));
 
 //        if(request.getBoardContent() != null) {
 //            spec = spec.and(TodoSpecification.likeContents(request.getBoardContent()));

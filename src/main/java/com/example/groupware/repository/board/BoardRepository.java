@@ -32,7 +32,6 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer>, 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")
     BoardMasterVO findByBoardId(@Param("id") int id);
-
 //    BoardMasterVO getById(@Param("boardNo") int boardNo);  //JpaRepository 제공
 //    BoardMasterVO findById(@Param("boardNo") int boardNo);  //JpaRepository 제공
 

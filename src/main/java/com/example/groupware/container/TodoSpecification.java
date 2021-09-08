@@ -31,7 +31,7 @@ public class TodoSpecification {
             public Predicate toPredicate(Root<BoardMasterVO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
                 // 2) like
                 return criteriaBuilder.like(root.get("contents"), "%" + contents + "%");
-                // content like "?"
+                // contents like "?"
             }
         };
     }
@@ -47,7 +47,6 @@ public class TodoSpecification {
             }
         };
     }
-
 
     //between Search Term
     public static <T> Specification<T> betweenCreatedDate(LocalDateTime startDatetime, LocalDateTime endDatetime) {
