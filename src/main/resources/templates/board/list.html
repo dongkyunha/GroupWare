@@ -31,7 +31,7 @@
 </head>
 <body>
 <h1>Board list</h1>
-<button id="btnBoardInsert" type="button"><a href="/board/insertView">게시물 작성</a></button>
+<button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
 <br>
 <table>
     <thead>
@@ -88,5 +88,5 @@
 </footer>
 </body>
 <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
-<script type="text/javascript" th:src="@{/static/board/insert.js}"></script>
+<script type="text/javascript" th:src="@{/static/board/list.js}"></script>
 </html>

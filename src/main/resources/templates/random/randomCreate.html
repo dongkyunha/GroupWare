@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="createNum"><a>난수 생성</a></button>
+<br>
+<span>난수 : </span><input id="randomNum"/>
+<span>난수 : </span><a id="randomNum2"></a>
+<br>
+<button id="home" type="button">home</button>
+</body>
+<script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
+<script type="text/javascript" th:src="@{/static/random/randomCreate.js}"></script>
+</html>

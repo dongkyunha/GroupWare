@@ -1,3 +1,7 @@
+/*
+    게시판 상세내용 및 수정 detail
+*/
+
 let init = function(){
     main.init();
 }
@@ -35,13 +39,14 @@ let Event = (function () {
                     data: params,
                     type:"POST",
                     success: function(result){
-                        console.log("성공 : " + result);
-                        if(result.responseMessage == "success"){
+                        var resultData = result;
+                        console.log("성공 : " + resultData);
+                        if(resultData.responseMessage == "success"){
                             location.href="/board/list";
                         }else{
-                            var result = result.resultList;
-                            console.log(result);
-                            // location.href="/board/" +no;
+                            console.log(resultData.resultList);
+                            var boardNo = resultData.resultList.no;
+                            location.href="/board/" +boardNo;
                         }
                     }
                 });

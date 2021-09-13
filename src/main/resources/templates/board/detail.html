@@ -16,7 +16,7 @@
         <table>
             <tr>
                 <th>게시물 번호</th>
-                <td><span th:text="${board.boardNo}">boardNo</span></a></td>
+                <td><a><span th:text="${board.boardNo}">boardNo</span></a></td>
             </tr>
             <tr>
                 <th>게시물 타입</th>
@@ -57,7 +57,7 @@
 
         <form method="post" action="/board/update">
             <input type="hidden" id="boardNo" name="boardNo" th:value="${board.boardNo}">
-            <input type="text" name="boardCount" th:value="${board.boardCount}">
+            <input type="hidden" name="boardCount" th:value="${board.boardCount}">
             <br/><span>게시판 타입: </span><input name="boardType" th:value="${board.boardType}"/>
             <br/><span>제목 : </span><input name="boardTitle" th:value="${board.boardTitle}"/>
             <br/><span>내용 : </span><input name="boardContent" th:value="${board.boardContent}"/>

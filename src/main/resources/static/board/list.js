@@ -1,3 +1,7 @@
+/*
+    게시판 생성 insert
+*/
+
 let init = function(){
     main.init();
 }
@@ -18,7 +22,7 @@ let Event = (function () {
             //UI 이벤트 처리
             jQuery('#home').off('click').on('click', function (){
                 location.href = '/';
-            })
+            });
         }
     }
 }());
