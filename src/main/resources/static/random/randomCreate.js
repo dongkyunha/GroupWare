@@ -36,7 +36,21 @@ let Event = (function () {
                 location.href = '/';
             });
 
-            jQuery('#createNum').off('click').on('click', function (){
+            jQuery('#createComplex').off('click').on('click', function (){
+                $.ajax({
+                    url: "/random/createComplex",
+                    dataType: "json",
+                    type:"POST",
+                    success: function(result){
+                        var resultData = result;
+                        console.log("성공 : " + resultData.resultList);
+                        jQuery('#randomComplex').val(resultData.resultList);
+                        jQuery('#randomComplex2').html(resultData.resultList);
+                    }
+                });
+            });
+
+            jQuery('#createOnlyNum').off('click').on('click', function (){
                 $.ajax({
                     url: "/random/createNum",
                     dataType: "json",
@@ -46,6 +60,20 @@ let Event = (function () {
                         console.log("성공 : " + resultData.resultList);
                         jQuery('#randomNum').val(resultData.resultList);
                         jQuery('#randomNum2').html(resultData.resultList);
+                    }
+                });
+            });
+
+            jQuery('#createText').off('click').on('click', function (){
+                $.ajax({
+                    url: "/random/createText",
+                    dataType: "json",
+                    type:"POST",
+                    success: function(result){
+                        var resultData = result;
+                        console.log("성공 : " + resultData.resultList);
+                        jQuery('#randomText').val(resultData.resultList);
+                        jQuery('#randomText2').html(resultData.resultList);
                     }
                 });
             });
