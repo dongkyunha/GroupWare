@@ -32,12 +32,12 @@ public class RandomController {
 
         /** 랜덤을 생성할 대상 문자열 **/
         String DATA_FOR_RANDOM_STRING = ENGLISH_LOWER + ENGLISH_UPPER + NUMBER;
-        /** 랜덤 문자열 길이 **/
-        int random_string_length=10;
+//        /** 랜덤 문자열 길이 **/
+//        int random_string_length=10;
 
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
         for (int i = 0; i < 10; i++) {
-            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, random_string_length);
+            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);
         }
@@ -51,12 +51,10 @@ public class RandomController {
 
         /** 랜덤을 생성할 대상 문자열 **/
         String DATA_FOR_RANDOM_STRING = NUMBER;
-        /** 랜덤 문자열 길이 **/
-        int random_string_length=10;
 
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
         for (int i = 0; i < 10; i++) {
-            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, random_string_length);
+            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);
         }
@@ -70,12 +68,10 @@ public class RandomController {
 
         /** 랜덤을 생성할 대상 문자열 **/
         String DATA_FOR_RANDOM_STRING = ENGLISH_LOWER + ENGLISH_UPPER;
-        /** 랜덤 문자열 길이 **/
-        int random_string_length=10;
 
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
         for (int i = 0; i < 10; i++) {
-            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, random_string_length);
+            String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);
         }

@@ -17,8 +17,9 @@ public class RandomGenerate {
         if (length < 1){
             throw new IllegalArgumentException("length must be a positive number.");
         }
-
         System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA);
+
+        random.setSeed(System.currentTimeMillis());
         StringBuilder sb = new StringBuilder(length);
         for (int i = 0; i < length; i++) {
             sb.append(
