@@ -13,6 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,7 +29,7 @@ public class BoardController {
     private BoardService boardService;
 
     @GetMapping(value = "/list")
-    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable){
+    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable) throws ParseException {
         int page = 0;
         if(pageable.getPageNumber() != 0){
             page = pageable.getPageNumber() -1;
@@ -35,6 +40,13 @@ public class BoardController {
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);
+        LocalDateTime date = pageList.getContent().get(0).getCreateDate();
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        Date date2 = format.parse(date.toString());
+
+        Calendar cal = Calendar.getInstance();
+
         return mav;
     }
 
