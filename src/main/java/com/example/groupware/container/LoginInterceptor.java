@@ -6,22 +6,35 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
 
+    //필요한 page
+    public List loginEssential = Arrays.asList("/post/**", "/comment/**",  "/category/**", "/member/manage/**", "/main/edit/**");
+
+    //불필요한 page
+    public List loginInessential = Arrays.asList("/post/board/**", "/post/read/**", "/post/like/**" );
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        HttpSession httpSession = request.getSession();
-        String sessionItem = (String)httpSession.getAttribute(Sessions.SESSION_ID);
 
-        if(sessionItem == null){
-            response.getOutputStream().println("LOGIN REQUIRED");
+        String loginId  = (String)request.getSession().getAttribute("LoginId");
+
+        if(loginId  != null) {
+            return true;
+        }else{
+            String destUri = request.getRequestURI();
+            String destQuery = request.getQueryString();
+            String dest = (destQuery == null) ? destUri : destUri+"?"+destQuery;
+            request.getSession().setAttribute("dest", dest);
+//            response.getOutputStream().println("LOGIN REQUIRED");
+
+            response.sendRedirect("login/login");
             return false;
         }
-
-        return true;
     }
 
     @Override

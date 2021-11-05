@@ -25,8 +25,11 @@ public class EmployeeVO implements Serializable {
     @Column(name = "employee_name")
     private String employeeName;
 
-    @Column(name = "employee_password")
+    @Column(name = "employee_password", nullable = false)
     private String employeePassword;
+
+    @Column(name = "employee_email")
+    private String employeeEmail;
 
     @Column(name = "create_date")
     private LocalDateTime createDate = LocalDateTime.now();
