@@ -1,5 +1,6 @@
 package com.example.groupware.entity.employee;
 
+import com.example.groupware.entity.DomainDateVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class EmployeeVO implements Serializable {
+public class Employee00VO extends DomainDateVO {
 
     private static final long serialVersionUID = 1851112599569422513L;
 
@@ -31,9 +32,4 @@ public class EmployeeVO implements Serializable {
     @Column(name = "employee_email")
     private String employeeEmail;
 
-    @Column(name = "create_date")
-    private LocalDateTime createDate = LocalDateTime.now();
-
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate = LocalDateTime.now();
 }

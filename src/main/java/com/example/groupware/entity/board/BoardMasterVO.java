@@ -1,9 +1,11 @@
 package com.example.groupware.entity.board;
 
+import com.example.groupware.entity.DomainDateVO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -15,7 +17,8 @@ import java.time.LocalDateTime;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @DynamicInsert
-public class BoardMasterVO implements Serializable {
+//@DynamicUpdate
+public class BoardMasterVO extends DomainDateVO {
 
     private static final long serialVersionUID = 1L;
 
@@ -44,10 +47,4 @@ public class BoardMasterVO implements Serializable {
 
     @Column(name = "is_del", columnDefinition = "varchar(1) default 'N'")
     private String isDel;
-
-    @Column(name = "create_date")
-    private LocalDateTime createDate = LocalDateTime.now();
-
-    @Column(name = "modified_date")
-    private LocalDateTime modifiedDate = LocalDateTime.now();
 }
