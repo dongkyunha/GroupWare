@@ -68,7 +68,6 @@ public class RandomController {
 
         /** 랜덤을 생성할 대상 문자열 **/
         String DATA_FOR_RANDOM_STRING = ENGLISH_LOWER + ENGLISH_UPPER;
-
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
         for (int i = 0; i < 10; i++) {
             String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
