@@ -43,7 +43,7 @@ public class BoardMasterVO extends DomainDateVO {
     private String boardPassword;
 
     @Column(name = "board_count", nullable = false, columnDefinition = "int default 0")
-    private int boardCount;
+    private int boardCount = 0;
 
     @Column(name = "is_del", columnDefinition = "varchar(1) default 'N'")
     private String isDel;
