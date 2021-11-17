@@ -65,6 +65,7 @@ public class TodoSpecification {
         return new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
+                // 1) equal
                 return criteriaBuilder.equal(root.get("isDel"), isDel);
                 //is_del = ?
             }
