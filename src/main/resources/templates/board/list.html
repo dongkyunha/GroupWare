@@ -2,7 +2,7 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>Title</title>
+        <title>BoardTitle</title>
         <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
     </head>
     <body>
@@ -30,7 +30,7 @@
                     <td th:text="${board.boardContent}">boardContent</td>
                     <td th:text="${board.boardId}">boardId</td>
                     <td th:text="${board.boardCount}">boardCount</td>
-                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd') != #temporals.format(today, 'yyyy-MM-dd') ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd').equals(#temporals.format(today, 'yyyy-MM-dd')) ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
                     <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
                 </tr>
             </tbody>
@@ -67,6 +67,6 @@
             </nav>
         </footer>
     </body>
-    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
+    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/board/list.js}"></script>
 </html>
