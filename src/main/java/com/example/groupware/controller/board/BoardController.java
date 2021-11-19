@@ -28,8 +28,9 @@ public class BoardController {
     @Autowired
     private BoardService boardService;
 
+    //clean code
     @GetMapping(value = "/list")
-    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable) throws ParseException {
+    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable){
         int page = 0;
         if(pageable.getPageNumber() != 0){
             page = pageable.getPageNumber() -1;
@@ -40,19 +41,11 @@ public class BoardController {
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);
-        LocalDateTime date = pageList.getContent().get(0).getCreateDate();
-
-        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        Date date2 = format.parse(date.toString());
-
-        Calendar cal = Calendar.getInstance();
 
         return mav;
     }
 
-    //clean code
-    @GetMapping(value = "/list2")
-//    @RequestMapping(value ="/list", method = RequestMethod.GET)
+    @RequestMapping(value ="/list2", method = RequestMethod.GET)
     public ModelAndView findBoardAll(ModelAndView mav, @PageableDefault Pageable pageable){
         int page = 0;
         if(pageable.getPageNumber() != 0){
@@ -60,12 +53,12 @@ public class BoardController {
             System.out.println("page : " + page);
         }
 
-//        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
-
         pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
 
         // board/list?page=1 ==> pageable 에 page 로 들어감
         Page<BoardMasterVO> pageList = boardService.findAll2(pageable);
+
+        //        List<BoardMasterVO> boardList = boardService.findAll();//기본 전체 호출
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);

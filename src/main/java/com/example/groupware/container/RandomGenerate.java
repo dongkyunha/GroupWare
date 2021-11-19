@@ -29,4 +29,18 @@ public class RandomGenerate {
         return sb.toString();
     }
 
+    public static String generateLength(int length){
+        if (length < 1){
+            throw new IllegalArgumentException("length must be a positive number.");
+        }
+
+        random.setSeed(System.currentTimeMillis());
+        StringBuilder sb = new StringBuilder(length);
+        for (int i = 0; i < length; i++) {
+            sb.append(random.nextInt(10));
+        }
+
+        return sb.toString();
+    }
+
 }
