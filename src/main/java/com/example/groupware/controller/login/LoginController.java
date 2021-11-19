@@ -18,7 +18,7 @@ import java.util.Map;
 public class LoginController {
 
     @GetMapping(value = "/login")
-    public String loginPage(HttpSession session, RedirectAttributes redirectAttributes){
+    public String loginPage(){
         return "login/login";
     }
 

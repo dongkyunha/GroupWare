@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
@@ -22,8 +23,9 @@ public class LoginInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
         String loginId  = (String)request.getSession().getAttribute("LoginId");
+        Optional<String> user = Optional.ofNullable(loginId);
 
-        if(loginId  != null) {
+        if(user.isPresent()) {
             return true;
         }else{
             String destUri = request.getRequestURI();
