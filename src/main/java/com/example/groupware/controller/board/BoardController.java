@@ -2,6 +2,7 @@ package com.example.groupware.controller.board;
 
 import com.example.groupware.container.ResultSet;
 import com.example.groupware.entity.board.BoardMasterVO;
+import com.example.groupware.entity.board.RequestBoard;
 import com.example.groupware.service.board.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,14 +31,14 @@ public class BoardController {
 
     //clean code
     @GetMapping(value = "/list")
-    public ModelAndView findBoardWhereAll(ModelAndView mav,@PageableDefault Pageable pageable){
+    public ModelAndView findBoardAllWhere(ModelAndView mav, RequestBoard request, @PageableDefault Pageable pageable){
         int page = 0;
         if(pageable.getPageNumber() != 0){
             page = pageable.getPageNumber() -1;
             System.out.println("page : " + page);
         }
         pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
-        Page<BoardMasterVO> pageList = boardService.findAllWhere(pageable);
+        Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);

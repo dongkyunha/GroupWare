@@ -26,13 +26,16 @@ public class TodoSpecification {
     }
 
     public static Specification<BoardMasterVO> likeContents(String contents) {
-        return new Specification<BoardMasterVO>() {
-            @Override
-            public Predicate toPredicate(Root<BoardMasterVO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                // 2) like
-                return criteriaBuilder.like(root.get("contents"), "%" + contents + "%");
-                // contents like "?"
-            }
+        return (root, query, criteriaBuilder) -> {
+            // 2) like
+            return criteriaBuilder.like(root.get("boardContent"), "%" + contents + "%");
+            // board_content like "?"
+        };
+    }
+    public static Specification<BoardMasterVO> likeTitles(String contents) {
+        return (root, query, criteriaBuilder) -> {
+            return criteriaBuilder.like(root.get("boardTitle"), "%" + contents + "%");
+            // board_title like "?"
         };
     }
 

@@ -2,6 +2,7 @@ package com.example.groupware.service.board;
 
 import com.example.groupware.container.TodoSpecification;
 import com.example.groupware.entity.board.BoardMasterVO;
+import com.example.groupware.entity.board.RequestBoard;
 import com.example.groupware.repository.board.BoardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -29,13 +30,14 @@ public class BoardService {
         return boardRepository.findAll(pageable);
     }
 
-    public Page<BoardMasterVO> findAllWhere(Pageable pageable){
+    public Page<BoardMasterVO> findAllWhere(RequestBoard request, Pageable pageable){
         Specification<BoardMasterVO> spec = Specification.where(TodoSpecification.equalIsDel("N"));
 
-//        if(request.getBoardContent() != null) {
-//            spec = spec.and(TodoSpecification.likeContents(request.getBoardContent()));
-//        }
-//
+        if(!request.getSearchContent().equals("")) {
+            spec = spec.and(TodoSpecification.likeContents(request.getSearchContent()))
+                    .and(TodoSpecification.likeTitles(request.getSearchContent()));
+        }
+
 //        if(startDatetime != null && endDatetime != null) {
 //            spec = spec.and(TodoSpecification.betweenCreatedDate(startDatetime, endDatetime));
 //        }
