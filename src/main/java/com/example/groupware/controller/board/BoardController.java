@@ -10,6 +10,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +35,23 @@ public class BoardController {
             System.out.println("page : " + page);
         }
         pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
+        Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
+
+        mav.setViewName("board/list");
+        mav.addObject("boardList", pageList);
+        mav.addObject("today", LocalDateTime.now());
+
+        return mav;
+    }
+
+    @GetMapping(value = "/list3")
+    public ModelAndView findBoardAllWhereMultipleOrder(ModelAndView mav, RequestBoard request,
+        @SortDefault.SortDefaults({
+                @SortDefault(sort = "boardNo", direction = Sort.Direction.DESC),
+                @SortDefault(sort = "boardTitle", direction = Sort.Direction.DESC)
+        }) Pageable pageable){
+
+        pageable = PageRequest.of(pageable.getPageNumber() != 0 ? pageable.getPageNumber() -1 : pageable.getPageNumber(),10, Sort.by("boardNo").descending().and(Sort.by("boardTitle")));
         Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
 
         mav.setViewName("board/list");
