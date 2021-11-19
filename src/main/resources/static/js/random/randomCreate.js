@@ -33,7 +33,7 @@ let Event = (function () {
         click : function(){
             //UI 이벤트 처리
             jQuery('#home').off('click').on('click', function (){
-                location.href = '/home';
+                location.href = '/login/home';
             });
 
             jQuery('#createComplex').off('click').on('click', function (){

@@ -36,9 +36,11 @@ public class RandomGenerate {
 
         random.setSeed(System.currentTimeMillis());
         StringBuilder sb = new StringBuilder(length);
+        //region length 만큼 반복
         for (int i = 0; i < length; i++) {
             sb.append(random.nextInt(10));
         }
+        //endregion
 
         return sb.toString();
     }

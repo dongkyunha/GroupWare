@@ -1,93 +1,96 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <style>
-        table{
-            width: 100%;
-        }
-        th, td {
-            font-weight: bold;
-            border: 1px solid #8B2D2DFF;
-            width: 10%;
-            text-align: center;
-        }
-        a:link {text-decoration: none; color: blue;}
-        a:visited {text-decoration: none; color: black;}
-        a:active {text-decoration: none; color: grey;}
-        a:hover {text-decoration: underline; color: red;}
-        ul {
-            list-style: none;
-            margin: 0 auto;
-        }
-        li {
-            margin: 0 auto;
-            padding: 10px;
-            border : 0;
-            float: left;
-        }
-    </style>
-</head>
-<body>
-<h1>Board list</h1>
-<button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
-<br>
-<table>
-    <thead>
-        <tr>
-            <th>게시물 번호</th>
-            <th>게시물 타입</th>
-            <th>제목</th>
-            <th>내용</th>
-            <th>작성자</th>
-            <th>조회수</th>
-            <th>작성일</th>
-            <th>수정일</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr th:each="board : ${boardList}">
-            <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
-            <td th:text="${board.boardType}">boardType</td>
-            <td th:text="${board.boardTitle}">boardTitle</td>
-            <td th:text="${board.boardContent}">boardContent</td>
-            <td th:text="${board.boardId}">boardId</td>
-            <td th:text="${board.boardCount}">boardCount</td>
-            <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd HH:mm')}">createDate</td>
-            <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
-        </tr>
-    </tbody>
-</table>
-<br>
-<button id="home" type="button">home</button>
-<div style="display: inline; float: right;"><input id="SearchContent"/><button type="button">검색</button></div>
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <style>
+            table{
+                width: 100%;
+            }
+            th, td {
+                font-weight: bold;
+                border: 1px solid #8B2D2DFF;
+                width: 10%;
+                text-align: center;
+            }
+            a:link {text-decoration: none; color: blue;}
+            a:visited {text-decoration: none; color: black;}
+            a:active {text-decoration: none; color: grey;}
+            a:hover {text-decoration: underline; color: red;}
+            ul {
+                list-style: none;
+                margin: 0 auto;
+            }
+            li {
+                margin: 0 auto;
+                padding: 10px;
+                border : 0;
+                float: left;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Board list</h1>
+        <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
+        <br>
+        <table>
+            <thead>
+                <tr>
+                    <th>게시물 번호</th>
+                    <th>게시물 타입</th>
+                    <th>제목</th>
+                    <th>내용</th>
+                    <th>작성자</th>
+                    <th>조회수</th>
+                    <th>작성일</th>
+                    <th>수정일</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="board : ${boardList}">
+                    <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
+                    <td th:text="${board.boardType}">boardType</td>
+                    <td th:text="${board.boardTitle}">boardTitle</td>
+                    <td th:text="${board.boardContent}">boardContent</td>
+                    <td th:text="${board.boardId}">boardId</td>
+                    <td th:text="${board.boardCount}">boardCount</td>
+                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd') != #temporals.format(localDateTime, 'yyyy-MM-dd') ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+                    <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
+                </tr>
+            </tbody>
+        </table>
+        <br>
+        <button id="home" type="button">home</button>
+        <div style="display: inline; float: right;">
+            <input id="SearchContent"/>
+            <button type="button">검색</button>
+        </div>
 
-<footer>
-    <nav class="navbar" aria-label="Page navigation" style="text-align: center;">
-        <ul class="pagination" th:with="startNumber=${T(Math).floor(boardList.number/10)} * 10 + 1, endNumber=(${boardList.totalPages} > ${startNumber} + 9) ? ${startNumber} + 9 : ${boardList.totalPages}">
+        <footer>
+            <nav class="navbar" aria-label="Page navigation" style="text-align: center;">
+                <ul class="pagination" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
 
-            <li th:style="${boardList.first} ? 'display:none'">
-                <a href="/board/list?page=1">&laquo;</a>
-            </li>
-            <li th:style="${boardList.first} ? 'display:none'">
-                <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
-            </li>
-            <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active'">
-                <a th:href="@{/board/list(page=${page})}" th:text="${page}">
-                    <span class="sr-only"></span>
-                </a>
-            </li>
-            <li th:style="${boardList.last} ? 'display:none'">
-                <a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a>
-            </li>
-            <li th:style="${boardList.last} ? 'display:none'">
-                <a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
-            </li>
-        </ul>
-    </nav>
-</footer>
-</body>
-<script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
-<script type="text/javascript" th:src="@{/static/board/list.js}"></script>
+                    <li th:style="${boardList.first} ? 'display:none'">
+                        <a href="/board/list?page=1">&laquo;</a>
+                    </li>
+                    <li th:style="${boardList.first} ? 'display:none'">
+                        <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
+                    </li>
+                    <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
+                        <a th:href="@{/board/list(page=${page})}" th:text="${page}">
+                            <span class="sr-only"></span>
+                        </a>
+                    </li>
+                    <li th:style="${boardList.last} ? 'display:none'">
+                        <a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a>
+                    </li>
+                    <li th:style="${boardList.last} ? 'display:none'">
+                        <a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </footer>
+    </body>
+    <script type="text/javascript" th:src="@{http://code.jquery.com/jquery-latest.js}"></script>
+    <script type="text/javascript" th:src="@{/static/js/board/list.js}"></script>
 </html>
