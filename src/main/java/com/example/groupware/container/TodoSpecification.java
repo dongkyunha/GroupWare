@@ -1,6 +1,5 @@
 package com.example.groupware.container;
 
-
 import com.example.groupware.entity.board.BoardMasterVO;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
