@@ -30,7 +30,7 @@
                     <td th:text="${board.boardContent}">boardContent</td>
                     <td th:text="${board.boardId}">boardId</td>
                     <td th:text="${board.boardCount}">boardCount</td>
-                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd') != #temporals.format(localDateTime, 'yyyy-MM-dd') ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd') != #temporals.format(today, 'yyyy-MM-dd') ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
                     <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
                 </tr>
             </tbody>

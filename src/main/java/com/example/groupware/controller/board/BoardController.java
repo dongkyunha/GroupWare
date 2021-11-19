@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,6 +38,7 @@ public class BoardController {
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);
+        mav.addObject("today", LocalDateTime.now());
 
         return mav;
     }
