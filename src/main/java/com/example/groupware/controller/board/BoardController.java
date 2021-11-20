@@ -91,6 +91,8 @@ public class BoardController {
     public ModelAndView findByBoardId(ModelAndView mav, @PathVariable("no") int no){
         mav.setViewName("board/detail");
         mav.addObject("board", boardService.findByBoardId(no));
+//        mav.addObject("page", "");
+//        mav.addObject("size", "");
         return mav;
     }
 
