@@ -14,7 +14,7 @@ import java.util.Optional;
 public class LoginInterceptor implements HandlerInterceptor {
 
     //필요한 page
-    public List loginEssential = Arrays.asList("/post/**", "/comment/**",  "/category/**", "/member/manage/**", "/main/edit/**");
+    public List loginEssential = Arrays.asList("/get/**", "/post/**", "/comment/**",  "/category/**", "/member/manage/**", "/main/edit/**");
 
     //불필요한 page
     public List loginInessential = Arrays.asList("/post/board/**", "/post/read/**", "/post/like/**" );

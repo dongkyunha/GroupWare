@@ -21,7 +21,7 @@ public class BoardService {
     public List<BoardMasterVO> findAll(){
         //순서
 //        return boardRepository.findAll();
-        //역순
+        //역순서
         return boardRepository.findAllByOrderByBoardNoDesc();
     }
 
