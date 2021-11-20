@@ -34,7 +34,7 @@ public class BoardController {
             page = pageable.getPageNumber() -1;
             System.out.println("page : " + page);
         }
-        pageable = PageRequest.of(page,10, Sort.by(Sort.Direction.DESC, "boardNo"));
+        pageable = PageRequest.of(page, pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "boardNo"));
         Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
 
         mav.setViewName("board/list");

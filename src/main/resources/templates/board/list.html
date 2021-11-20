@@ -8,8 +8,13 @@
     <body>
         <h1>Board list</h1>
         <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
+        <select style="float: right;width: 80px;" id="choiceSize">
+            <option th:value="10" th:text="10개씩"/>
+            <option th:value="30" th:text="30개씩"/>
+            <option th:value="50" th:text="50개씩"/>
+        </select>
         <br>
-        <table>
+        <table id="boardList">
             <thead>
                 <tr>
                     <th>게시물 번호</th>
@@ -38,33 +43,31 @@
         <br>
         <button id="home" type="button">home</button>
         <div style="display: inline; float: right;">
-            <input id="SearchContent"/>
-            <button type="button">검색</button>
+            <input id="searchContent"/>
+            <button type="button" id="searchBtn">검색</button>
         </div>
 
-        <footer>
-            <nav class="navbar" aria-label="Page navigation" style="text-align: center;">
-                <ul class="pagination" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
 
-                    <li th:style="${boardList.first} ? 'display:none'">
-                        <a href="/board/list?page=1">&laquo;</a>
-                    </li>
-                    <li th:style="${boardList.first} ? 'display:none'">
-                        <a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a>
-                    </li>
-                    <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
-                        <a th:href="@{/board/list(page=${page})}" th:text="${page}">
-                            <span class="sr-only"></span>
-                        </a>
-                    </li>
-                    <li th:style="${boardList.last} ? 'display:none'">
-                        <a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a>
-                    </li>
-                    <li th:style="${boardList.last} ? 'display:none'">
-                        <a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a>
-                    </li>
-                </ul>
-            </nav>
+        <div>
+            <ul class="pagination" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
+                <li th:style="${boardList.first} ? 'display:none'"><a href="/board/list?page=1">&laquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a></li>
+                <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
+                    <a th:href="@{/board/list(page=${page})}" th:text="${page}">
+                        <!--                            javascript:void(0);-->
+                        <!--                            @{/board/list(page=${page})}-->
+                        <!--                            jQuery('#choiceSize option:selected').val()-->
+                        <span class="sr-only"></span>
+                    </a>
+                </li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a></li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a></li>
+            </ul>
+        </div>
+
+
+        <footer>
+            <!--footer 영역-->
         </footer>
     </body>
     <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
