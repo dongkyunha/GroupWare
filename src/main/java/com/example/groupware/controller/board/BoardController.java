@@ -4,7 +4,6 @@ import com.example.groupware.container.ResultSet;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.entity.board.RequestBoard;
 import com.example.groupware.service.board.BoardService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +22,11 @@ import java.util.Map;
 @RequestMapping(value = "/board")
 public class BoardController {
 
-    @Autowired
-    private BoardService boardService;
+    private final BoardService boardService;
+
+    public BoardController(BoardService boardService) {
+        this.boardService = boardService;
+    }
 
     //clean code
     @GetMapping(value = "/list")

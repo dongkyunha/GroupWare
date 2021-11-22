@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RestAPIConnector {
+public class RestAPIConnector<T> {
 
     public <T> T sendGet(T t){
         return t;
@@ -27,4 +27,17 @@ public class RestAPIConnector {
         return t;
     }
 
+    private <T> T Interface(String url,Class<?> responseType, T t){
+
+        try {
+
+            HttpEntity<?> response = null;
+        }catch (Exception e){
+            e.getMessage();
+        }finally {
+
+        }
+
+        return t;
+    }
 }
