@@ -2,7 +2,7 @@
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
-        <title>BoardTitle</title>
+        <title>GROUPWARE</title>
         <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
     </head>
     <body>
@@ -54,8 +54,6 @@
                 <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
                     <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size})}" th:text="${page}">
                         <!--                            javascript:void(0);-->
-                        <!--                            @{/board/list(page=${page})}-->
-                        <!--                            jQuery('#choiceSize option:selected').val()-->
                         <span class="sr-only"></span>
                     </a>
                 </li>
