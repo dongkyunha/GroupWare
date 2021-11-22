@@ -11,11 +11,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class RequestBoard{
 
-    private String SearchType = "";
+    private String searchType = "";
 
-    private String SearchContent = "";
+    private String searchContent = "";
 
-    private String SearchId = "";
+    private String searchId = "";
 
     private LocalDateTime createDate;
 
