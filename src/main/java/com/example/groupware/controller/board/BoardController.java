@@ -42,6 +42,7 @@ public class BoardController {
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);
         mav.addObject("today", LocalDateTime.now());
+        mav.addObject("size", pageable.getPageSize());
 
         return mav;
     }

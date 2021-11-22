@@ -9,9 +9,9 @@
         <h1>Board list</h1>
         <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
         <select style="float: right;width: 80px;" id="choiceSize">
-            <option th:value="10" th:text="10개씩"/>
-            <option th:value="30" th:text="30개씩"/>
-            <option th:value="50" th:text="50개씩"/>
+            <option th:selected="${size}==10" th:value="10" th:text="10개씩" />
+            <option th:selected="${size}==30" th:value="30" th:text="30개씩"/>
+            <option th:selected="${size}==50" th:value="50" th:text="50개씩"/>
         </select>
         <br>
         <table id="boardList">
@@ -52,7 +52,7 @@
                 <li th:style="${boardList.first} ? 'display:none'"><a href="/board/list?page=1">&laquo;</a></li>
                 <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a></li>
                 <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
-                    <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page})}" th:text="${page}">
+                    <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size})}" th:text="${page}">
                         <!--                            javascript:void(0);-->
                         <!--                            @{/board/list(page=${page})}-->
                         <!--                            jQuery('#choiceSize option:selected').val()-->

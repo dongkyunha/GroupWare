@@ -46,6 +46,12 @@ let Event = (function () {
     return {
         click : function(){
             //UI 이벤트 처리
+            jQuery('#choiceSize').off('change').on('change', function (){
+                var size = jQuery('#choiceSize option:selected').val();
+                location.href = '/board/list?page='+ '1' + '&size=' + size;
+                // console.log(size);
+            });
+
             jQuery('#home').off('click').on('click', function (){
                 console.log(location.href);
                 location.href = '/login/home';
