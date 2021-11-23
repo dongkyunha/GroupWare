@@ -13,20 +13,20 @@ import java.time.LocalDateTime;
 @Component
 public class TodoSpecification {
 
+    // 1) equal
     public static Specification<BoardMasterVO> equalTodoId(Long boardId) {
         return new Specification<BoardMasterVO>() {
             @Override
             public Predicate toPredicate(Root<BoardMasterVO> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                // 1) equal
                 return criteriaBuilder.equal(root.get("boardId"), boardId);
                 //board_id = ?
             }
         };
     }
 
+    // 2) like - stream
     public static Specification<BoardMasterVO> likeContents(String contents) {
         return (root, query, criteriaBuilder) -> {
-            // 2) like
             return criteriaBuilder.like(root.get("boardContent"), "%" + contents + "%");
             // board_content like "?"
         };
@@ -37,32 +37,36 @@ public class TodoSpecification {
             // board_title like "?"
         };
     }
+    public static Specification<BoardMasterVO> likeboardIds(String contents) {
+        return (root, query, criteriaBuilder) -> {
+            return criteriaBuilder.like(root.get("boardId"), "%" + contents + "%");
+            // board_title like "?"
+        };
+    }
 
-    //like Emp Nm
+    // 2) like
     public static <T> Specification<T> likeEmpName(String empName) {
         return new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                // 1) equal
                 return criteriaBuilder.like(root.get("empName"), "%" + empName + "%");
                 //employee_name like "?"
             }
         };
     }
 
-    //between Search Term
+    //3) between Search Term
     public static <T> Specification<T> betweenCreatedDate(LocalDateTime startDatetime, LocalDateTime endDatetime) {
         return new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
-                // 3) between
                 return criteriaBuilder.between(root.get("createdDate"), startDatetime, endDatetime);
                 // created_date between ? and ?
             }
         };
     }
 
-    //delete YN
+    //4) delete YN
     public static <T> Specification<T> equalIsDel(String isDel) {
         return new Specification<T>() {
             @Override

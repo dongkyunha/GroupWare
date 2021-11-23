@@ -4,10 +4,7 @@ import com.example.groupware.container.ResultSet;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.entity.board.RequestBoard;
 import com.example.groupware.service.board.BoardService;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
@@ -34,15 +31,16 @@ public class BoardController {
         int page = 0;
         if(pageable.getPageNumber() != 0){
             page = pageable.getPageNumber() -1;
-            System.out.println("page : " + page);
         }
         pageable = PageRequest.of(page, pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "boardNo"));
         Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
 
         mav.setViewName("board/list");
         mav.addObject("boardList", pageList);
+        mav.addObject("boardListCnt", pageList.getTotalElements());
         mav.addObject("today", LocalDateTime.now());
         mav.addObject("size", pageable.getPageSize());
+        mav.addObject("searchList", request);
 
         return mav;
     }

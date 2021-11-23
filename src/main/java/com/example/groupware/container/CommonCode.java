@@ -2,7 +2,10 @@ package com.example.groupware.container;
 
 public enum CommonCode {
     YES("Y"),
-    NO("N")
+    NO("N"),
+    TITLE("title"),
+    CONTENT("content"),
+    BOARD_ID("boardId")
     ;
 
     public String code;

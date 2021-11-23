@@ -1,5 +1,6 @@
 package com.example.groupware.service.board;
 
+import com.example.groupware.container.CommonCode;
 import com.example.groupware.container.TodoSpecification;
 import com.example.groupware.entity.board.BoardMasterVO;
 import com.example.groupware.entity.board.RequestBoard;
@@ -32,10 +33,18 @@ public class BoardService {
     public Page<BoardMasterVO> findAllWhere(RequestBoard request, Pageable pageable){
         Specification<BoardMasterVO> spec = Specification.where(TodoSpecification.equalIsDel("N"));
 
-        if(!request.getSearchContent().equals("")) {
-            spec = spec.and(TodoSpecification.likeContents(request.getSearchContent()))
-                    .and(TodoSpecification.likeTitles(request.getSearchContent()));
+        if(request.getSearchType().equals(CommonCode.TITLE.code)) {
+            spec = spec.and(TodoSpecification.likeTitles(request.getSearchContent()));
         }
+
+        if(request.getSearchType().equals(CommonCode.CONTENT.code)) {
+            spec = spec.and(TodoSpecification.likeContents(request.getSearchContent()));
+        }
+
+        if(request.getSearchType().equals(CommonCode.BOARD_ID.code)) {
+            spec = spec.and(TodoSpecification.likeboardIds(request.getSearchContent()));
+        }
+
 
 //        if(startDatetime != null && endDatetime != null) {
 //            spec = spec.and(TodoSpecification.betweenCreatedDate(startDatetime, endDatetime));
