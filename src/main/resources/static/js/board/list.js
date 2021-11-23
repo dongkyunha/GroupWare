@@ -12,7 +12,6 @@ var Target = document.getElementById("clock");
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 let init = function(){
     main.init();
-    main.bind();
 }
 
 let main = (function(){
@@ -21,23 +20,6 @@ let main = (function(){
             console.log("자바스크립트 바인딩 테스트");
 
             Event.click();
-        },
-        bind: function () {
-            bind.boardMasterBind();
-        }
-    }
-}());
-
-//--------------------------------------------------------------------------------------------------------------------------------------------------------
-//바인딩 함수 정의 부분
-//--------------------------------------------------------------------------------------------------------------------------------------------------------
-let bind = (function () {
-    return {
-        boardMasterBind: function () {
-            //화면에 표시 or 생성하는 경우
-            var boardList = jQuery('#boardList tbody');
-
-
         }
     }
 }());
@@ -45,12 +27,19 @@ let bind = (function () {
 let Event = (function () {
     return {
         click : function(){
-            //UI 이벤트 처리
             jQuery('#choiceSize').off('change').on('change', function (){
-                var size = jQuery('#choiceSize option:selected').val();
+                const size = jQuery('#choiceSize option:selected').val();
                 location.href = '?page='+ '1' + '&size=' + size;
                 // console.log(size);
             });
+
+            jQuery('#btnSearch').off('click').on('click', function () {
+                const searchType = jQuery('#searchType').val();
+                const searchContent = jQuery('#searchContent').val();
+                console.log(searchType);
+                console.log(searchContent);
+            });
+
 
             jQuery('#home').off('click').on('click', function (){
                 console.log(location.href);
