@@ -1,0 +1,7 @@
+span {
+    display: inline-block;
+    width: 100px;
+    margin-top: 15px;
+    margin-left: 10px;
+    font-weight: bold;
+}

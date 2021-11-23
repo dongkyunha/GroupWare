@@ -30,7 +30,6 @@ let Event = (function () {
                 const size = jQuery("#choiceSize option:selected").val();
                 const searchType = jQuery("#searchType").val();
                 const searchContent = jQuery("#searchContent").val();
-
                 let local = "?page=" + "1" + "&size=" + size;
                 if(searchType != "" && searchContent != ""){
                     local += "&searchType=" + searchType + "&searchContent=" + searchContent;
@@ -47,7 +46,6 @@ let Event = (function () {
                     local += "&searchType=" + searchType + "&searchContent=" + searchContent;
                 }
                 location.href = local;
-
             });
 
             jQuery("#home").off("click").on("click", function (){

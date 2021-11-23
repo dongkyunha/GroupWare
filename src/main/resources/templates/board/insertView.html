@@ -3,18 +3,9 @@
     <head>
         <meta charset="UTF-8">
         <title>GROUPWARE</title>
-        <style>
-            span {
-                display: inline-block;
-                width: 100px;
-                margin-top: 15px;
-                margin-left: 10px;
-                font-weight: bold;
-            }
-            </style>
-        </style>
     </head>
     <body>
+        <link rel="stylesheet" th:href="@{/static/css/board/insertView.css}"></script>
         <form method="post" action="/board/insert">
             <br/><span>게시판 타입: </span><input name="boardType"/>
             <br/><span>제목 : </span><input name="boardTitle"/>

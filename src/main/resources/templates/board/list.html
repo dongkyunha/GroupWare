@@ -3,9 +3,10 @@
     <head>
         <meta charset="UTF-8">
         <title>GROUPWARE</title>
-        <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
+        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
     </head>
     <body>
+        <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
         <h1>Board list</h1>
         <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
         <div class="divInline" th:text="|총 ${boardListCnt}개|"/>
@@ -50,15 +51,15 @@
 
         <div class="page">
             <ul class="pagination modal" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
-                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=1, size=${size})}">&laquo;</a></li>
-                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number}, size=${size})}">&lsaquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=1, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&laquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&lsaquo;</a></li>
                 <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
                     <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}" th:text="${page}">
                         <span class="sr-only"></span>
                     </a>
                 </li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2, size=${size})}">&rsaquo;</a></li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages}, size=${size})}">&raquo;</a></li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&rsaquo;</a></li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&raquo;</a></li>
             </ul>
         </div>
 
@@ -81,8 +82,11 @@
 
         <footer>
             <!--footer 영역-->
+            <div>application Guide : woonbin</div>
+            <div>templete : dongkyun</div>
+            <div>board : woonbin, dongkyun</div>
+            <div>generate : dongkyun</div>
         </footer>
     </body>
-    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
     <script type="text/javascript" th:src="@{/static/js/board/list.js}"></script>
 </html>
