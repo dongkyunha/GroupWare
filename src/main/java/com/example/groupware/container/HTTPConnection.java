@@ -29,7 +29,19 @@ public class HTTPConnection {
         return t;
     }
 
-    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap){
+    public <T> HttpHeaders createHearder(String url, T t, MultiValueMap<? extends String,? extends String> multiValueMap){
+        HttpHeaders headers = new HttpHeaders();
+
+
+
+        return headers;
+    }
+
+    private <T> Map<String, Object> HTTPInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap, Map<String, Object> uriVariables){
+        return new HashMap<>();
+    }
+
+    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap, Map<String, Object> uriVariables){
 
         Map<String, Object> result = new HashMap<>();
 
