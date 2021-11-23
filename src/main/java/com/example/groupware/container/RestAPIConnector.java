@@ -1,16 +1,15 @@
 package com.example.groupware.container;
 
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
+import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.util.UriComponentsBuilder;
 
 import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RestAPIConnector<T> {
+public class RestAPIConnector {
 
     public <T> T sendGet(T t){
         return t;
@@ -27,11 +26,28 @@ public class RestAPIConnector<T> {
         return t;
     }
 
-    private <T> T Interface(String url,Class<?> responseType, T t){
+    private <T> T Interface(String url,Class<?> responseType, T t, HttpMethod method, MediaType mediaType){
+
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(url);
 
         try {
 
-            HttpEntity<?> response = null;
+
+            url = uriBuilder.build().encode().toString();
+
+            HttpEntity<?> requestEntity = null;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(mediaType);
+
+//            requestEntity = new HttpEntity<T>(t, headers);
+            requestEntity = new HttpEntity<T>(headers);
+
+
+            //통신
+            RestTemplate restTemplate = new RestTemplate();
+            ResponseEntity<String> response = restTemplate.exchange(url, method, requestEntity, String.class);
+
         }catch (Exception e){
             e.getMessage();
         }finally {

@@ -9,7 +9,6 @@ public class ResultSet<T> {
     private String responseMessage = "success";	//성공여부
     private Object resultList;			//결과
 
-
     public ResultSet() {}
 
     //default

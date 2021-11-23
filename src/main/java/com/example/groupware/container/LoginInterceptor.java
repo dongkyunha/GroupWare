@@ -22,7 +22,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
 
-        String loginId  = (String)request.getSession().getAttribute("LoginId");
+        String loginId  = (String)request.getSession().getAttribute("loginId");
         Optional<String> user = Optional.ofNullable(loginId);
 
         if(user.isPresent()) {
