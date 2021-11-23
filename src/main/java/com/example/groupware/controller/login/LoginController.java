@@ -44,7 +44,7 @@ public class LoginController {
 
         }
 
-        loginService.insertEmployeeInfo(loginForm);
+//        loginService.insertEmployeeInfo(loginForm);
         return "login/login";
     }
 
