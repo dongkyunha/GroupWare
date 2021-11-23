@@ -1,5 +1,6 @@
 package com.example.groupware.container;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.util.MultiValueMap;
@@ -9,8 +10,9 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.util.HashMap;
 import java.util.Map;
 
+@Slf4j
 @Component
-public class RestAPIConnector {
+public class HTTPConnection {
 
     public <T> T sendGet(T t){
         return t;
@@ -27,33 +29,46 @@ public class RestAPIConnector {
         return t;
     }
 
-    private <T> T Interface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap){
+    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap){
 
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(url);
+        Map<String, Object> result = new HashMap<>();
 
         try {
-
-
+            UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(url);
             url = uriBuilder.build().encode().toString();
-
-            HttpEntity<?> requestEntity = null;
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(mediaType);
 
-//            requestEntity = new HttpEntity<T>(t, headers);
-            requestEntity = new HttpEntity<T>(headers);
+            HttpEntity<?> requestEntity = null;
+            if(t != null){
+                requestEntity = new HttpEntity<T>(t, headers);
+            }else{
+                requestEntity = new HttpEntity<T>(headers);
+            }
 
             //통신
             RestTemplate restTemplate = new RestTemplate();
             ResponseEntity<?> response = restTemplate.exchange(url, method, requestEntity, responseType);
 
+            switch (response.getStatusCode()){
+                case OK:
+                    break;
+                case CREATED:
+                case ACCEPTED:
+                case NOT_FOUND:
+                case NO_CONTENT:
+                case BAD_REQUEST:
+                case CHECKPOINT:
+                    log.error("요청 실패");
+                    break;
+            }
         }catch (Exception e){
             e.getMessage();
         }finally {
 
         }
 
-        return t;
+        return result;
     }
 }
