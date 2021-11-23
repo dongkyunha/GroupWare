@@ -49,32 +49,32 @@
 
         <div class="page">
             <ul class="pagination modal" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
-                <li th:style="${boardList.first} ? 'display:none'"><a href="/board/list?page=1">&laquo;</a></li>
-                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number})}">&lsaquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=1, size=${size})}">&laquo;</a></li>
+                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number}, size=${size})}">&lsaquo;</a></li>
                 <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
                     <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size})}" th:text="${page}">
-                        <!--                            javascript:void(0);-->
+                        <!--javascript:void(0);-->
                         <span class="sr-only"></span>
                     </a>
                 </li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2)}">&rsaquo;</a></li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages})}">&raquo;</a></li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2, size=${size})}">&rsaquo;</a></li>
+                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages}, size=${size})}">&raquo;</a></li>
             </ul>
         </div>
 
         <!-- search{s} -->
         <div style="text-align: center;">
-            <div style="display: inline;">
-                <select name="searchType" id="searchType">
+            <div class="divInline">
+                <select id="searchType">
                     <option value="title">제목</option>
                     <option value="content">본문</option>
                     <option value="boardId">작성자</option>
                 </select>
             </div>
-            <div style="display: inline;">
+            <div class="divInline">
                 <input type="text" id="searchContent">
             </div>
-            <div style="display: inline;">
+            <div class="divInline">
                 <button name="btnSearch" id="btnSearch">검색</button>
             </div>
         </div>
