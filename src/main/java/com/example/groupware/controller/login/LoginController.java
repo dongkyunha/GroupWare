@@ -45,6 +45,10 @@ public class LoginController {
 
         }
 
+        if(!loginForm.getEmployeeBirthDay().equals("")){
+            loginForm.setEmployeeBirthDay(loginForm.getEmployeeBirthDay().replaceAll("-", ""));
+        }
+
 //        loginService.insertEmployeeInfo(loginForm);
         return "redirect:/login";
     }
