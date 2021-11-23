@@ -24,9 +24,10 @@ public class LoginController {
         return "login/login";
     }
 
-    @PostMapping(value = "/login")
-    public String login(Employee00VO loginForm, HttpSession session, RedirectAttributes redirectAttributes){
+    @PostMapping(value = "/loginCheck")
+    public String loginCheck(Employee00VO loginForm, HttpSession session, RedirectAttributes redirectAttributes){
         log.info("LoginController 시작");
+        //todo Session 로그인 여부 체크 해서 넘기기
         return "login/home";
     }
 
@@ -45,7 +46,7 @@ public class LoginController {
         }
 
 //        loginService.insertEmployeeInfo(loginForm);
-        return "login/login";
+        return "redirect:/login";
     }
 
     @GetMapping(value = "login/home")
