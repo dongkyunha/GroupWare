@@ -12,7 +12,6 @@
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 var init = function () {
     main.init();
-    main.firstMethodBind();
 };
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 // 메인 함수 정의 부분
@@ -34,7 +33,8 @@ var Event = (function () {
         enterClick: function () {
             //UI 이벤트 처리
             jQuery('#register').off('click').on('click', function (){
-                alert("Sign Up");
+                location.href = "/login/register";
+                // alert("Sign Up");
             });
             // jQuery('#signIn').keypress(function (key){
             //    if(key.keyCode == 13){

@@ -25,6 +25,15 @@ public class LoginController {
         return "login/home";
     }
 
+    @GetMapping(value = "/login/register")
+    public void register(){
+    }
+
+    @PostMapping(value = "/login/join")
+    public String join(){
+        return "login/login";
+    }
+
     @GetMapping(value = "login/home")
     public ModelAndView home(){
         ModelAndView mav = new ModelAndView();

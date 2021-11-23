@@ -2,6 +2,7 @@ package com.example.groupware.container;
 
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -26,7 +27,7 @@ public class RestAPIConnector {
         return t;
     }
 
-    private <T> T Interface(String url,Class<?> responseType, T t, HttpMethod method, MediaType mediaType){
+    private <T> T Interface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap){
 
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString(url);
 
@@ -43,10 +44,9 @@ public class RestAPIConnector {
 //            requestEntity = new HttpEntity<T>(t, headers);
             requestEntity = new HttpEntity<T>(headers);
 
-
             //통신
             RestTemplate restTemplate = new RestTemplate();
-            ResponseEntity<String> response = restTemplate.exchange(url, method, requestEntity, String.class);
+            ResponseEntity<?> response = restTemplate.exchange(url, method, requestEntity, responseType);
 
         }catch (Exception e){
             e.getMessage();

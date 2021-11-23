@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <title>GROUPWARE</title>
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css}">
+  </head>
+  <body>
+    <div class="login_wrapper" style="margin: 5% 20%;">
+      <form method="post" action="/login/join">
+        <div>
+          <input type="text" class="form-control" name="employeeId" placeholder="아이디" autocomplete="off" required/>
+        </div>
+        <div>
+          <input type="password" class="form-control" name="employeePassword" placeholder="비밀번호" autocomplete="off" required/>
+        </div>
+        <div>
+          <input type="text" class="form-control" name="employeeName" placeholder="이름" autocomplete="off" required/>
+        </div>
+        <div>
+          <input type="text" class="form-control" name="employeeEmail" placeholder="이메일" autocomplete="off" required/>
+        </div>
+        <div style="margin: 0;">
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="sex-1" name="sex" value="1" checked>
+            <label class="custom-control-label" for="sex-1">남</label>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <input type="radio" class="custom-control-input" id="sex-2" name="sex" value="2">
+            <label class="custom-control-label" for="sex-2">여</label>
+          </div>
+        </div>
+        <div>
+          <input type="text" class="form-control" name="employeeBirthDate" placeholder="생년월일(yyMMdd)" autocomplete="off"/>
+        </div>
+        <div style="margin-bottom: 50px;">
+          <input type="text" class="form-control" name="phoneNumber" placeholder="전화번호(-생략)" autocomplete="off"/>
+        </div>
+
+        <br>
+        <div>
+          <button class="btn btn-dark btn-large form-control" id="btnBoardInsert" type="submit">저장</button>
+        </div>
+        <div>
+          <button class="btn btn-secondary btn-large form-control" id="btnCancel" type="button" onclick="location.href='/login'">취소</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
