@@ -19,14 +19,14 @@
           <input type="text" class="form-control" name="employeeName" placeholder="이름" autocomplete="off" required/>
         </div>
         <div>
-          <input type="text" class="form-control" name="employeeEmail" placeholder="이메일" autocomplete="off" required/>
+          <input type="email" class="form-control" name="employeeEmail" placeholder="이메일" autocomplete="off" required/>
         </div>
-        <div style="margin: 0;">
-          <div class="custom-control custom-radio custom-control-inline">
+        <div style="margin: 10px 0px; text-align: center;">
+          <div style="display: inline">
             <input type="radio" class="custom-control-input" id="sex-1" name="sex" value="1" checked>
             <label class="custom-control-label" for="sex-1">남</label>
           </div>
-          <div class="custom-control custom-radio custom-control-inline">
+          <div style="display: inline">
             <input type="radio" class="custom-control-input" id="sex-2" name="sex" value="2">
             <label class="custom-control-label" for="sex-2">여</label>
           </div>
@@ -38,7 +38,6 @@
           <input type="text" class="form-control" name="phoneNumber" placeholder="전화번호(-생략)" autocomplete="off"/>
         </div>
 
-        <br>
         <div>
           <button class="btn btn-dark btn-large form-control" id="btnBoardInsert" type="submit">저장</button>
         </div>
