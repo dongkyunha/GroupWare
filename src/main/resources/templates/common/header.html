@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:fragment="f-header">
+        <!-- Meta Set -->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>GROUPWARE</title>
+        <!-- Air datepicker css -->
+        <!--    <script type="text/javascript" th:src="@{/static/js/datePicker/jquery-3.1.1.min.js}"></script>--><!--안되는 이유좀..-->
+        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
+        <script type="text/javascript" th:src="@{/static/js/datePicker/datepicker.js}"></script> <!-- Air datepicker js -->
+        <script type="text/javascript" th:src="@{/static/js/datePicker/i18n/datepicker.ko.js}"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+        <!-- 합쳐지고 최소화된 최신 CSS -->
+        <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css}">
+        <link rel="stylesheet" th:href="@{/static/css/datePicker/datepicker.min.css}" media="all">
+    </th:block>
+</html>

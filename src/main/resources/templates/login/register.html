@@ -1,19 +1,10 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <meta charset="UTF-8">
-    <title>GROUPWARE</title>
-    <!-- Air datepicker css -->
-<!--    <script type="text/javascript" th:src="@{/static/js/datePicker/jquery-3.1.1.min.js}"></script>-->
-    <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
-    <script type="text/javascript" th:src="@{/static/js/datePicker/datepicker.js}"></script> <!-- Air datepicker js -->
-    <script type="text/javascript" th:src="@{/static/js/datePicker/i18n/datepicker.ko.js}"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
-    <!-- 합쳐지고 최소화된 최신 CSS -->
-    <link rel="stylesheet" th:href="@{https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css}">
-    <link rel="stylesheet" th:href="@{/static/css/datePicker/datepicker.min.css}" media="all">
+    <th:block th:replace="common/header"></th:block>
   </head>
   <body>
-    <div class="login_wrapper" style="margin: 5% 20%;">
+    <div class="login_wrapper content" style="margin: 5% 20% 0 20%;">
       <form method="post" action="/login/join">
         <div>
           <input type="text" class="form-control" name="employeeId" placeholder="아이디" autocomplete="off" required/>
@@ -52,11 +43,7 @@
         </div>
       </form>
     </div>
+
+    <th:block th:replace="common/footer"></th:block>
   </body>
-  <script>
-    $("#datepicker").datepicker({
-      language: 'ko',
-      autoClose: true
-    });
-  </script>
 </html>

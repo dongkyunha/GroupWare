@@ -1,23 +1,22 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>GROUPWARE</title>
-        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
+        <th:block th:replace="common/header"></th:block>
     </head>
     <body>
-        <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
-        <h1>Board list</h1>
-        <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
-        <div class="divInline" th:text="|총 ${boardListCnt}개|"/>
-        <select style="float: right;width: 80px;" id="choiceSize">
-            <option th:selected="${size}==10" th:value="10" th:text="10개씩" />
-            <option th:selected="${size}==30" th:value="30" th:text="30개씩"/>
-            <option th:selected="${size}==50" th:value="50" th:text="50개씩"/>
-        </select>
-        <br>
-        <table id="boardList">
-            <thead>
+        <div class="content">
+            <h1>Board list</h1>
+            <button id="btnBoardInsert" type="button" onclick="location.href='/board/insertView'">게시물 작성</button>
+            <div class="divInline" th:text="|총 ${boardListCnt}개|"/>
+            <select style="float: right;width: 80px;" id="choiceSize">
+                <option th:selected="${size}==10" th:value="10" th:text="10개씩" />
+                <option th:selected="${size}==30" th:value="30" th:text="30개씩"/>
+                <option th:selected="${size}==50" th:value="50" th:text="50개씩"/>
+            </select>
+            <br>
+            <br>
+            <table id="boardList">
+                <thead>
                 <tr>
                     <th>게시물 번호</th>
                     <th>게시물 타입</th>
@@ -28,8 +27,8 @@
                     <th>작성일</th>
                     <th>수정일</th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 <tr th:each="board : ${boardList}">
                     <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
                     <td th:text="${board.boardType}">boardType</td>
@@ -40,53 +39,44 @@
                     <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd').equals(#temporals.format(today, 'yyyy-MM-dd')) ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
                     <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
                 </tr>
-            </tbody>
-        </table>
-        <br>
-        <button id="home" type="button">home</button>
-<!--        <div style="display: inline; float: right;">-->
-<!--            <input id="searchContent"/>-->
-<!--            <button type="button" id="searchBtn">검색</button>-->
-<!--        </div>-->
+                </tbody>
+            </table>
+            <br>
+            <button id="home" type="button">home</button>
 
-        <div class="page">
-            <ul class="pagination modal" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
-                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=1, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&laquo;</a></li>
-                <li th:style="${boardList.first} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&lsaquo;</a></li>
-                <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
-                    <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}" th:text="${page}">
-                        <span class="sr-only"></span>
-                    </a>
-                </li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.number} + 2, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&rsaquo;</a></li>
-                <li th:style="${boardList.last} ? 'display:none'"><a th:href="@{/board/list(page=${boardList.totalPages}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&raquo;</a></li>
-            </ul>
-        </div>
-
-        <!-- search{s} -->
-        <div style="text-align: center;">
-            <div class="divInline">
-                <select id="searchType">
-                    <option th:selected="${searchList.getSearchType()}==title" value="title">제목</option>
-                    <option th:selected="${searchList.getSearchType()}==content" value="content">본문</option>
-                    <option th:selected="${searchList.getSearchType()}==boardId" value="boardId">작성자</option>
-                </select>
+            <div class="page">
+                <ul class="pagination customModel" th:with="startNumber=${T(Math).floor(boardList.number/10) * 10 + 1}, endNumber=(${boardList.totalPages > startNumber + 9 ? startNumber + 9 : boardList.totalPages})">
+                    <li th:style="${boardList.first} ? 'display:none'"><a th:class="leftPage" th:href="@{/board/list(page=1, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&laquo;</a></li>
+                    <li th:style="${boardList.first} ? 'display:none'"><a th:class="leftPage" th:href="@{/board/list(page=${boardList.number}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&lsaquo;</a></li>
+                    <li th:each="page : ${#numbers.sequence(startNumber, endNumber)}" th:class="(${page} == ${boardList.number} + 1) ? 'active' : ''">
+                        <a th:class="(${page} == ${boardList.number} + 1) ? 'active num' : 'num'" th:href="@{/board/list(page=${page}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}" th:text="${page}">
+                            <span class="sr-only"></span>
+                        </a>
+                    </li>
+                    <li th:style="${boardList.last} ? 'display:none'"><a th:class="rightPage" th:href="@{/board/list(page=${boardList.number} + 2, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&rsaquo;</a></li>
+                    <li th:style="${boardList.last} ? 'display:none'"><a th:class="rightPage" th:href="@{/board/list(page=${boardList.totalPages}, size=${size}, searchType=${searchList.getSearchType()}, searchContent=${searchList.getSearchContent()})}">&raquo;</a></li>
+                </ul>
             </div>
-            <div class="divInline">
-                <input type="text" th:value="${searchList.getSearchContent()}" id="searchContent">
-            </div>
-            <div class="divInline">
-                <button name="btnSearch" id="btnSearch">검색</button>
+            <!-- search{s} -->
+            <div style="text-align: center;">
+                <div class="divInline">
+                    <select id="searchType">
+                        <option th:selected="${searchList.getSearchType()}==title" value="title">제목</option>
+                        <option th:selected="${searchList.getSearchType()}==content" value="content">본문</option>
+                        <option th:selected="${searchList.getSearchType()}==boardId" value="boardId">작성자</option>
+                    </select>
+                </div>
+                <div class="divInline">
+                    <input type="text" th:value="${searchList.getSearchContent()}" id="searchContent">
+                </div>
+                <div class="divInline">
+                    <button name="btnSearch" id="btnSearch">검색</button>
+                </div>
             </div>
         </div>
 
-        <footer>
-            <!--footer 영역-->
-            <div>application Guide : woonbin</div>
-            <div>templete : dongkyun</div>
-            <div>board : woonbin, dongkyun</div>
-            <div>generate : dongkyun</div>
-        </footer>
+        <th:block th:replace="common/footer"></th:block>
     </body>
+    <link rel="stylesheet" th:href="@{/static/css/board/list.css}"></script>
     <script type="text/javascript" th:src="@{/static/js/board/list.js}"></script>
 </html>

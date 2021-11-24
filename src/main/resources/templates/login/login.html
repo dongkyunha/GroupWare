@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>GROUPWARE</title>
-        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
+        <th:block th:replace="common/header"></th:block>
     </head>
     <body>
-        <h1>LOGIN</h1>
-        <div th:if="${param.error}">
-            Invalid username and password.
+        <div class="content">
+            <h1>LOGIN</h1>
+            <div th:if="${param.error}">
+                Invalid username and password.
+            </div>
+            <div th:if="${param.logout}">
+                You have been logged out.
+            </div>
+            <form id="loginForm" th:action="@{/loginCheck}" method="post">
+                <div><label> User Name : <input type="text" name="username"/></label></div>
+                <div><label> Password: <input type="password" id="password" name="password"/></label></div>
+                <div style="display: inline"><input type="submit" value="Sign In"/></div>
+                <div style="display: inline"><input type="button" id="register" value="Sign Up"/></div>
+            </form>
         </div>
-        <div th:if="${param.logout}">
-            You have been logged out.
-        </div>
-        <form id="loginForm" th:action="@{/loginCheck}" method="post">
-            <div><label> User Name : <input type="text" name="username"/></label></div>
-            <div><label> Password: <input type="password" id="password" name="password"/></label></div>
-            <div style="display: inline"><input type="submit" value="Sign In"/></div>
-            <div style="display: inline"><input type="button" id="register" value="Sign Up"/></div>
-        </form>
+
+        <th:block th:replace="common/footer"></th:block>
     </body>
     <script type="text/javascript" th:src="@{/static/js/login/login.js}"></script>
 </html>

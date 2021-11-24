@@ -1,23 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
     <head>
-        <!-- Meta Set -->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <!-- Custom styles for this template-->
-<!--        <link rel='stylesheet' th:href='@{/webjars/bootstrap/3.4.1/css/bootstrap.min.css}'>-->
-
-        <title>GROUPWARE</title>
-        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
+        <th:block th:replace="common/header"></th:block>
     </head>
     <body>
-        <h1 id="clock">clock</h1>
-        <br>
-        <h1>게시판 테스트</h1>
-        <a href="/board/list">게시판</a>
-        <br><br><br>
-        <h1>난수 테스트</h1>
-        <a href="/random/list">난수</a>
+        <div class="content">
+            <h1 id="clock">clock</h1>
+            <br>
+            <h1>게시판 테스트</h1>
+            <a href="/board/list">게시판</a>
+            <br><br><br>
+            <h1>난수 테스트</h1>
+            <a href="/random/list">난수</a>
+        </div>
 
+        <th:block th:replace="common/footer"></th:block>
     </body>
     <script type="text/javascript" th:src="@{/static/js/login/home.js}"></script>
 </html>

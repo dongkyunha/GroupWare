@@ -3,7 +3,7 @@
 */
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 //코드 정의
-var Target = document.getElementById("clock");
+const Target = document.getElementById("clock");
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 //상수
 
@@ -27,16 +27,16 @@ let main = (function(){
 let Event = (function () {
     return {
         clock : function (){
-            var time = new Date();
+            const time = new Date();
 
-            var month = time.getMonth();
-            var date = time.getDate();
-            var day = time.getDay();
-            var week = ['일', '월', '화', '수', '목', '금', '토'];
+            const month = time.getMonth();
+            const date = time.getDate();
+            const day = time.getDay();
+            const week = ['일', '월', '화', '수', '목', '금', '토'];
 
-            var hours = time.getHours();
-            var minutes = time.getMinutes();
-            var seconds = time.getSeconds();
+            const hours = time.getHours();
+            const minutes = time.getMinutes();
+            const seconds = time.getSeconds();
 
             Target.innerText =
                 `${month + 1}월 ${date}일 ${week[day]}요일 ` +
