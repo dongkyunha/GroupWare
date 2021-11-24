@@ -7,6 +7,7 @@ import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import java.lang.invoke.MethodType;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -32,16 +33,23 @@ public class HTTPConnection {
     public <T> HttpHeaders createHearder(String url, T t, MultiValueMap<? extends String,? extends String> multiValueMap){
         HttpHeaders headers = new HttpHeaders();
 
-
-
         return headers;
     }
 
-    private <T> Map<String, Object> HTTPInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap, Map<String, Object> uriVariables){
-        return new HashMap<>();
+    private <T> Map<String, Object> sendHTTP(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap, Map<? extends String, ? extends String> uriVariables){
+
+        if(method != null){
+            return sendInterface(url, responseType, t, HttpMethod.GET, mediaType, multiValueMap, uriVariables);
+        }else{
+            if(t == null){
+                return sendInterface(url, responseType, null, HttpMethod.POST, mediaType, multiValueMap, uriVariables);
+            }else{
+                return sendInterface(url, responseType, t, HttpMethod.POST, mediaType, multiValueMap, uriVariables);
+            }
+        }
     }
 
-    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<? extends String,? extends String> multiValueMap, Map<String, Object> uriVariables){
+    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap, Map<? extends String, ? extends String> uriVariables){
 
         Map<String, Object> result = new HashMap<>();
 
