@@ -30,7 +30,7 @@ public class HTTPConnection {
         return t;
     }
 
-    public <T> HttpHeaders createHearder(String url, T t, MultiValueMap<? extends String,? extends String> multiValueMap){
+    public <T> HttpHeaders createHearder(String url, T t, MultiValueMap<?,?> uriVariables){
         HttpHeaders headers = new HttpHeaders();
 
         return headers;
