@@ -36,17 +36,13 @@ public class LoginController {
     }
 
     @PostMapping(value = "/login/join")
-    public String join(Employee00VO loginForm){
-        if(loginForm.getEmployeeId().equals("")){
-
+    public String join(Employee00VO empInfo){
+        if(!empInfo.getEmployeeBirthDay().equals("")){
+            empInfo.setEmployeeBirthDay(empInfo.getEmployeeBirthDay().replaceAll("-", ""));
         }
 
-        if(loginForm.getEmployeePassword().equals("")){
-
-        }
-
-        if(!loginForm.getEmployeeBirthDay().equals("")){
-            loginForm.setEmployeeBirthDay(loginForm.getEmployeeBirthDay().replaceAll("-", ""));
+        if(!empInfo.getEmployeePhone().trim().equals("")){
+            empInfo.setEmployeeBirthDay(empInfo.getEmployeePhone().replaceAll("-", ""));
         }
 
 //        loginService.insertEmployeeInfo(loginForm);

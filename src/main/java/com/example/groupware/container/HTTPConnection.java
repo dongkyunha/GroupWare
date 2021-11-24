@@ -20,13 +20,6 @@ public class HTTPConnection {
     }
 
     public <T> T sendPost(T t){
-        Map<String, Object> uriVariables = new HashMap<>();
-        HttpHeaders header = new HttpHeaders();
-        HttpEntity<?> requestEntity = new HttpEntity<>(header);
-
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.exchange("", HttpMethod.POST,requestEntity, Map.class, uriVariables);
-
         return t;
     }
 

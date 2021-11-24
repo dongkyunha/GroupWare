@@ -28,11 +28,14 @@ public class Employee00VO extends DomainDateVO {
     private String employeePassword;
 
     @Column(name = "employee_email")
-    private String employeeEmail;
+    private String employeeEmail = "";
 
     @Column(name = "employee_sex")
     private String employeeSex;
 
     @Column(name = "employee_birthDay")
-    private String employeeBirthDay;
+    private String employeeBirthDay = "";
+
+    @Column(name = "employee_phone")
+    private String employeePhone = "";
 }
