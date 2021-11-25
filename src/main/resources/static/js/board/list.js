@@ -46,6 +46,27 @@ let Event = (function () {
                     local += "&searchType=" + searchType + "&searchContent=" + searchContent;
                 }
                 location.href = local;
+
+                //region 작성중
+                // if(searchContent.length > 1){
+                //     let params = {
+                //         searchType: searchType,
+                //         searchContent: searchContent
+                //     };
+                //
+                //     $.ajax({
+                //         url: "/board/tableList",
+                //         data : JSON.stringify(params),
+                //         contentType: 'application/json',
+                //         type:"POST"
+                //     }).done(function (fragment){
+                //         console.log(fragment);
+                //         $("#boardList tbody").replaceWith(fragment);
+                //     });
+                // }else{
+                //     alert("검색조건이 없습니다.");
+                // }
+                //endregion
             });
 
             jQuery("#home").off("click").on("click", function (){

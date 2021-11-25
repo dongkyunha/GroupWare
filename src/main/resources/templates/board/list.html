@@ -17,28 +17,33 @@
             <br>
             <table id="boardList">
                 <thead>
-                <tr>
-                    <th>게시물 번호</th>
-                    <th>게시물 타입</th>
-                    <th>제목</th>
-                    <th>내용</th>
-                    <th>작성자</th>
-                    <th>조회수</th>
-                    <th>작성일</th>
-                    <th>수정일</th>
-                </tr>
+                    <tr>
+                        <th>게시물 번호</th>
+                        <th>게시물 타입</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                        <th>수정일</th>
+                    </tr>
                 </thead>
-                <tbody>
-                <tr th:each="board : ${boardList}">
-                    <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
-                    <td th:text="${board.boardType}">boardType</td>
-                    <td th:text="${board.boardTitle}">boardTitle</td>
-                    <td th:text="${board.boardContent}">boardContent</td>
-                    <td th:text="${board.boardId}">boardId</td>
-                    <td th:text="${board.boardCount}">boardCount</td>
-                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd').equals(#temporals.format(today, 'yyyy-MM-dd')) ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
-                    <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
-                </tr>
+                <tbody th:if="${boardListCnt} != 0">
+                    <tr th:each="board : ${boardList}">
+                        <td><a th:href="@{/board/{id}(id=${board.boardNo})}"><span th:text="${board.boardNo}">boardNo</span></a></td>
+                        <td th:text="${board.boardType}">boardType</td>
+                        <td th:text="${board.boardTitle}">boardTitle</td>
+                        <td th:text="${board.boardContent}">boardContent</td>
+                        <td th:text="${board.boardId}">boardId</td>
+                        <td th:text="${board.boardCount}">boardCount</td>
+                        <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd').equals(#temporals.format(today, 'yyyy-MM-dd')) ? #temporals.format(board.createDate, 'HH:mm') : #temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+                        <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
+                    </tr>
+                </tbody>
+                <tbody th:unless="${boardListCnt} != 0">
+                    <tr>
+                        <td colspan="8">검색 결과가 존재하지 않습니다.</td>
+                    </tr>
                 </tbody>
             </table>
             <br>

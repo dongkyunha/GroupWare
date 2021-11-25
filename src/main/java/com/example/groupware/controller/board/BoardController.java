@@ -8,6 +8,7 @@ import org.springframework.data.domain.*;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.SortDefault;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -40,6 +41,19 @@ public class BoardController {
         mav.addObject("searchList", request);
 
         return mav;
+    }
+
+    @PostMapping(value = "/tableList")
+    @ResponseBody
+    public ResultSet<String> findBoardList(Model model, @RequestBody RequestBoard request, @PageableDefault Pageable pageable){
+        ResultSet<String> resultSet = new ResultSet<>();
+
+        pageable = PageRequest.of(pageable.getPageNumber() != 0 ? pageable.getPageNumber() -1 : 0, pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "boardNo"));
+        Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
+
+        resultSet.setResultList(pageList.getContent());
+
+        return resultSet;
     }
 
     @GetMapping(value = "/list3")

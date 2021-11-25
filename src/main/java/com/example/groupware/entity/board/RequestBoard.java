@@ -14,8 +14,6 @@ public class RequestBoard{
 
     private String searchContent = "";
 
-    private String searchId = "";
-
     private LocalDateTime createDate;
 
     private LocalDateTime modifiedDate;
