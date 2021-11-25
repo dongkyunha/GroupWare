@@ -28,11 +28,8 @@ public class BoardController {
     //clean code
     @GetMapping(value = "/list")
     public ModelAndView findBoardAllWhere(ModelAndView mav, RequestBoard request, @PageableDefault Pageable pageable){
-        int page = 0;
-        if(pageable.getPageNumber() != 0){
-            page = pageable.getPageNumber() -1;
-        }
-        pageable = PageRequest.of(page, pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "boardNo"));
+
+        pageable = PageRequest.of(pageable.getPageNumber() != 0 ? pageable.getPageNumber() -1 : 0, pageable.getPageSize(), Sort.by(Sort.Direction.DESC, "boardNo"));
         Page<BoardMasterVO> pageList = boardService.findAllWhere(request, pageable);
 
         mav.setViewName("board/list");

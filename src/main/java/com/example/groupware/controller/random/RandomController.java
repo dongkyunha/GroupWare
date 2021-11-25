@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
@@ -30,6 +31,7 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createComplex")
+    @ResponseBody
     public ResultSet<String> createComplex(){
         ResultSet<String> resultSet = new ResultSet<>();
 
@@ -39,7 +41,7 @@ public class RandomController {
 //        int random_string_length=10;
 
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);
@@ -48,6 +50,7 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createNum")
+    @ResponseBody
     public ResultSet<String> createNum(){
         ResultSet<String> resultSet = new ResultSet<>();
 
@@ -55,7 +58,7 @@ public class RandomController {
         String DATA_FOR_RANDOM_STRING = NUMBER;
 
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);
@@ -64,13 +67,14 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createText")
+    @ResponseBody
     public ResultSet<String> createText(){
         ResultSet<String> resultSet = new ResultSet<>();
 
         /** 랜덤을 생성할 대상 문자열 **/
         String DATA_FOR_RANDOM_STRING = ENGLISH_LOWER + ENGLISH_UPPER;
 //        System.out.println("DATA_FOR_RANDOM_STRING ==> " + DATA_FOR_RANDOM_STRING);
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 1; i++) {
             String randomNum = randomGenerate.generate(DATA_FOR_RANDOM_STRING, 10);
             System.out.println("random " + i + " : " + randomNum);
             resultSet.setResultList(randomNum);

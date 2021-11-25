@@ -30,7 +30,7 @@ public class HTTPConnection {
     }
 
     private <T> Map<String, Object> sendHTTP(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, Map<? extends String, ? extends String> uriVariables, MultiValueMap<?,?> multiValueMap ){
-//        if(method != null){
+//        if(mediaType != null){
 //            return sendInterface(url, responseType, t, HttpMethod.GET, mediaType, uriVariables, multiValueMap);
 //        }else{
 //            if(t == null){

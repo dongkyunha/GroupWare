@@ -11,3 +11,6 @@ footer {
     height : 110px;
     bottom : 0;
 }
+.divInline{
+    display: inline;
+}
