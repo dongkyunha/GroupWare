@@ -29,20 +29,20 @@ public class HTTPConnection {
         return headers;
     }
 
-    private <T> Map<String, Object> sendHTTP(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap, Map<? extends String, ? extends String> uriVariables){
-
-        if(method != null){
-            return sendInterface(url, responseType, t, HttpMethod.GET, mediaType, multiValueMap, uriVariables);
-        }else{
-            if(t == null){
-                return sendInterface(url, responseType, null, HttpMethod.POST, mediaType, multiValueMap, uriVariables);
-            }else{
-                return sendInterface(url, responseType, t, HttpMethod.POST, mediaType, multiValueMap, uriVariables);
-            }
-        }
+    private <T> Map<String, Object> sendHTTP(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, Map<? extends String, ? extends String> uriVariables, MultiValueMap<?,?> multiValueMap ){
+//        if(method != null){
+//            return sendInterface(url, responseType, t, HttpMethod.GET, mediaType, uriVariables, multiValueMap);
+//        }else{
+//            if(t == null){
+//                return sendInterface(url, responseType, null, HttpMethod.POST, mediaType, uriVariables, multiValueMap);
+//            }else{
+//                return sendInterface(url, responseType, t, HttpMethod.POST, mediaType, uriVariables, multiValueMap);
+//            }
+//        }
+        return new HashMap<>();
     }
 
-    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, MultiValueMap<?,?> multiValueMap, Map<? extends String, ? extends String> uriVariables){
+    private <T> Map<String, Object> sendInterface(String url, Class<?> responseType, T t, HttpMethod method, MediaType mediaType, Map<? extends String, ? extends String> uriVariables, MultiValueMap<?,?> multiValueMap){
 
         Map<String, Object> result = new HashMap<>();
 

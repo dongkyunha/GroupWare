@@ -1,68 +1,70 @@
 <!DOCTYPE html>
 <html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>GROUPWARE</title>
-        <script type="text/javascript" th:src="@{https://code.jquery.com/jquery-latest.js}"></script>
+        <th:block th:replace="common/header"></th:block>
     </head>
     <body>
-        <link rel="stylesheet" th:href="@{/static/css/board/detail.css}"></script>
-        <div id="detailView">
-            <table>
-                <tr>
-                    <th>게시물 번호</th>
-                    <td><a><span th:text="${board.boardNo}">boardNo</span></a></td>
-                </tr>
-                <tr>
-                    <th>게시물 타입</th>
-                    <td th:text="${board.boardType}">boardType</td>
-                </tr>
-                <tr>
-                    <th>제목</th>
-                    <td th:text="${board.boardTitle}">boardTitle</td>
-                </tr>
-                <tr>
-                    <th>내용</th>
-                    <td th:text="${board.boardContent}">boardContent</td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td th:text="${board.boardId}">boardId</td>
-                </tr>
-                <tr>
-                    <th>조회수</th>
-                    <td th:text="${board.boardCount}">boardCount</td>
-                </tr>
-                <tr>
-                    <th>작성일</th>
-                    <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
-                </tr>
-                <tr>
-                    <th>마지막 수정일</th>
-                    <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
-                </tr>
-            </table>
+        <div class="content">
+            <div id="detailView">
+                <table>
+                    <tr>
+                        <th>게시물 번호</th>
+                        <td><a><span th:text="${board.boardNo}">boardNo</span></a></td>
+                    </tr>
+                    <tr>
+                        <th>게시물 타입</th>
+                        <td th:text="${board.boardType}">boardType</td>
+                    </tr>
+                    <tr>
+                        <th>제목</th>
+                        <td th:text="${board.boardTitle}">boardTitle</td>
+                    </tr>
+                    <tr>
+                        <th>내용</th>
+                        <td th:text="${board.boardContent}">boardContent</td>
+                    </tr>
+                    <tr>
+                        <th>작성자</th>
+                        <td th:text="${board.boardId}">boardId</td>
+                    </tr>
+                    <tr>
+                        <th>조회수</th>
+                        <td th:text="${board.boardCount}">boardCount</td>
+                    </tr>
+                    <tr>
+                        <th>작성일</th>
+                        <td th:text="${#temporals.format(board.createDate, 'yyyy-MM-dd')}">createDate</td>
+                    </tr>
+                    <tr>
+                        <th>마지막 수정일</th>
+                        <td th:text="${#temporals.format(board.modifiedDate, 'yyyy-MM-dd HH:mm')}">modifiedDate</td>
+                    </tr>
+                </table>
 
-            <button type="button" id="btnUpdateDetail">수정</button>
-            <button type="button" th:onclick="'location.href=\'' + '/board/list' + '' + '\''">목록</button>
+                <button type="button" id="btnUpdateDetail">수정</button>
+                <button type="button" th:onclick="'location.href=\'' + '/board/list' + '' + '\''">목록</button>
+            </div>
+
+            <div id="updateView" style="display: none;">
+                <p th:text="${board}" hidden></p>
+
+                <form method="post" action="/board/update">
+                    <input type="hidden" id="boardNo" name="boardNo" th:value="${board.boardNo}">
+                    <input type="hidden" name="boardCount" th:value="${board.boardCount}">
+                    <br/><span>게시판 타입: </span><input name="boardType" th:value="${board.boardType}"/>
+                    <br/><span>제목 : </span><input name="boardTitle" th:value="${board.boardTitle}"/>
+                    <br/><span>내용 : </span><input name="boardContent" th:value="${board.boardContent}"/>
+                    <br/><span>작성자 : </span><input name="boardId" th:value="${board.boardId}"/>
+                    <br/>
+                    <button id="btnBoardUpdate" type="submit">저장</button>
+                    <button id="btnBoardDelete" type="button">삭제</button>
+                    <button id="btnUpdateCancel" type="button">취소</button>
+                </form>
+            </div>
         </div>
 
-        <div id="updateView" style="display: none;">
-            <p th:text="${board}" hidden></p>
-
-            <form method="post" action="/board/update">
-                <input type="hidden" id="boardNo" name="boardNo" th:value="${board.boardNo}">
-                <input type="hidden" name="boardCount" th:value="${board.boardCount}">
-                <br/><span>게시판 타입: </span><input name="boardType" th:value="${board.boardType}"/>
-                <br/><span>제목 : </span><input name="boardTitle" th:value="${board.boardTitle}"/>
-                <br/><span>내용 : </span><input name="boardContent" th:value="${board.boardContent}"/>
-                <br/><span>작성자 : </span><input name="boardId" th:value="${board.boardId}"/>
-                <br/>
-                <button id="btnBoardUpdate" type="submit">저장</button>
-                <button id="btnBoardDelete" type="button">삭제</button>
-                <button id="btnUpdateCancel" type="button">취소</button>
-            </form>
-        </div>
+        <th:block th:replace="common/footer"></th:block>
     </body>
+    <link rel="stylesheet" th:href="@{/static/css/board/detail.css}"></script>
     <script type="text/javascript" th:src="@{/static/js/board/detail.js}"></script>
 </html>

@@ -6,8 +6,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 @Controller
 @RequestMapping(value = "/random")
@@ -26,7 +30,6 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createComplex")
-    @ResponseBody
     public ResultSet<String> createComplex(){
         ResultSet<String> resultSet = new ResultSet<>();
 
@@ -45,7 +48,6 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createNum")
-    @ResponseBody
     public ResultSet<String> createNum(){
         ResultSet<String> resultSet = new ResultSet<>();
 
@@ -62,7 +64,6 @@ public class RandomController {
     }
 
     @PostMapping(value = "/createText")
-    @ResponseBody
     public ResultSet<String> createText(){
         ResultSet<String> resultSet = new ResultSet<>();
 
@@ -75,5 +76,55 @@ public class RandomController {
             resultSet.setResultList(randomNum);
         }
         return resultSet;
+    }
+
+    @PostMapping(value = "/subList")
+    public ModelAndView subList(ModelAndView mav){
+        List<Integer> list = new ArrayList<>(Arrays.asList(1,2,3,4,5,6,7,8,9,0));
+        List<Integer> subList = new ArrayList<>(list.subList(0, 3));
+        System.out.println(subList);
+        list.remove(0);
+        System.out.println(subList);
+
+        //#region List 출력 예제
+        List listA = new ArrayList();
+
+        listA.add("김삿갓");
+        listA.add("홍아리");
+        listA.add(new String("홍길동"));
+
+        listA.add(1, "1번째 요소값");
+
+
+        // 인덱스를 통한 조회
+        String element0 = listA.get(0).toString();
+        String element1 = listA.get(1).toString();
+        String element3 = listA.get(2).toString();
+
+        //Iterator 통한 전체 조회
+        Iterator iterator = listA.iterator();
+        while (iterator.hasNext()) {
+            String element = (String) iterator.next();
+
+        }
+
+        //for-loop 통한 전체 조회
+        for(Object object : listA) {
+            String element = (String) object;
+        }
+
+        // 홍길동 앞에 값 추가
+        int index = listA.indexOf("홍길동");
+        listA.add(index, "홍길동 앞에 값 추가");
+
+        // 존재 여부 확인
+        System.out.println(listA.contains("홍길동"));
+
+        // 값 삭제하는 방법
+        System.out.println(listA.remove(0));
+        System.out.println(listA.remove("홍길동"));
+        //#endregion
+
+        return mav;
     }
 }

@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="kr">
+<html lang="kr" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
     <head>
-        <meta charset="UTF-8">
-        <title>GROUPWARE</title>
+        <th:block th:replace="common/header"></th:block>
     </head>
     <body>
-        <link rel="stylesheet" th:href="@{/static/css/board/insertView.css}"></script>
-        <div style="text-align: center;">
+        <div class="content" style="text-align: center;">
             <form method="post" action="/board/insert">
                 <br><span>게시판 타입: </span><input name="boardType"/>
                 <br><span>제목 : </span><input name="boardTitle"/>
@@ -18,5 +16,8 @@
                 <button name="btnCancel" type="button"><a href="/board/list">취소</a></button>
             </form>
         </div>
+
+        <th:block th:replace="common/footer"></th:block>
     </body>
+    <link rel="stylesheet" th:href="@{/static/css/board/insertView.css}"></script>
 </html>
