@@ -21,6 +21,8 @@ var main = (function () {
         init: function () {
             //시작과 동시에 할 작업 등..
             util.datePicker();
+
+            util.phonePattens();
         }
     }
 }());
@@ -32,17 +34,6 @@ var Event = (function () {
     return {
         enterClick: function () {
             //UI 이벤트 처리
-            jQuery('#register').off('click').on('click', function (){
-                location.href = "/login/register";
-                // alert("Sign Up");
-            });
-            // jQuery('#signIn').keypress(function (key){
-            //    if(key.keyCode == 13){
-            //        jQuery('#loginForm').submit();
-            //    }
-            // });
-
-
         }
     }
 }());
@@ -52,12 +43,17 @@ var Event = (function () {
 //--------------------------------------------------------------------------------------------------------------------------------------------------------
 let util = (function () {
     return {
-        datePicker: function () {
+        datePicker : function () {
             //공통 및 유틸적성격의 함수 처리
             $("#datepicker").datepicker({
                 language: 'ko',
                 autoClose: true
             });
+        },
+        phonePattens : function (){
+            jQuery('#employeePhone').on('keyup', function () {
+                jQuery('#employeePhone').val(jQuery('#employeePhone').val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-"));
+            })
         }
     }
 }());
