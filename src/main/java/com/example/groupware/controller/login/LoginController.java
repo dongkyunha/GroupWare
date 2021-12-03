@@ -42,10 +42,10 @@ public class LoginController {
         }
 
         if(!empInfo.getEmployeePhone().trim().equals("")){
-            empInfo.setEmployeeBirthDay(empInfo.getEmployeePhone().replaceAll("-", ""));
+            empInfo.setEmployeePhone(empInfo.getEmployeePhone().replaceAll("-", ""));
         }
 
-//        loginService.insertEmployeeInfo(loginForm);
+        loginService.insertEmployeeInfo(empInfo);
 
         return "redirect:/login";
     }

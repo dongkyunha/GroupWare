@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @MappedSuperclass
 public class DomainDateVO implements Serializable {
 
-    @Column(name = "create_date")
+    @Column(name = "created_date")
     private LocalDateTime createDate = LocalDateTime.now();
 
     @Column(name = "modified_date")

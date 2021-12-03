@@ -17,7 +17,6 @@ public class Employee00VO extends DomainDateVO {
     private static final long serialVersionUID = 1851112599569422513L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "employee_id", nullable = false)
     private String employeeId;
 
@@ -33,7 +32,7 @@ public class Employee00VO extends DomainDateVO {
     @Column(name = "employee_sex")
     private String employeeSex;
 
-    @Column(name = "employee_birthDay")
+    @Column(name = "employee_birthday")
     private String employeeBirthDay = "";
 
     @Column(name = "employee_phone")
