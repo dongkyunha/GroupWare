@@ -21,6 +21,8 @@ var main = (function () {
         init: function () {
             //시작과 동시에 할 작업 등..
             util.datePicker();
+
+            util.phonePattens();
         }
     }
 }());
@@ -58,6 +60,11 @@ let util = (function () {
                 language: 'ko',
                 autoClose: true
             });
+        },
+        phonePattens : function (){
+            jQuery('#employeePhone').on('keyup', function () {
+                jQuery('#employeePhone').val(jQuery('#employeePhone').val().replace(/[^0-9]/g, "").replace(/(^02|^0505|^1[0-9]{3}|^0[0-9]{2})([0-9]+)?([0-9]{4})$/,"$1-$2-$3").replace("--", "-"));
+            })
         }
     }
 }());
