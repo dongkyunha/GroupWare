@@ -100,7 +100,7 @@ public class BoardController {
     }
 
     @GetMapping(value = "/{no}")
-    public ModelAndView findByBoardId(ModelAndView mav, @PathVariable("no") int no){
+    public ModelAndView findByBoardId(ModelAndView mav, @PathVariable("no") long no){
         mav.setViewName("board/detail");
         mav.addObject("board", boardService.findByBoardId(no));
 //        mav.addObject("page", "");
@@ -118,7 +118,7 @@ public class BoardController {
     public String updateBoard(BoardMasterVO request){
         request.setBoardCount(request.getBoardCount()-1);
         boardService.updateBoard(request);
-        int no = request.getBoardNo();
+        long no = request.getBoardNo();
 
         return "redirect:/board/"+no;
     }

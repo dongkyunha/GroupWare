@@ -56,7 +56,7 @@ public class BoardService {
         return boardRepository.findAll(spec, pageable);
     }
 
-    public BoardMasterVO findByBoardId(int id){
+    public BoardMasterVO findByBoardId(long id){
         BoardMasterVO resultData = boardRepository.findByBoardId(id);
 
         int count = resultData.getBoardCount() + 1;
@@ -76,7 +76,7 @@ public class BoardService {
 //        return boardRepository.saveAndFlush(vo);        //update는 되나 전체 merge 기준이라 count 초기화됨
         return boardRepository.updateBoard(params);
     }
-    public int deleteBoard(int id){
+    public int deleteBoard(long id){
         return boardRepository.deleteBoard(id, "Y");
     }
 }

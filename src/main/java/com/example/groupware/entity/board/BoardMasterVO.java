@@ -22,7 +22,7 @@ public class BoardMasterVO extends DomainDateVO {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "board_no")
-    private int boardNo;
+    private long boardNo;
 
     @Column(name = "board_title")
     private String boardTitle;

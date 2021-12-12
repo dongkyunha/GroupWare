@@ -31,7 +31,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer>, 
 
     //select
     @Query("SELECT BM FROM BoardMasterVO as BM WHERE BM.boardNo = :id")
-    BoardMasterVO findByBoardId(@Param("id") int id);
+    BoardMasterVO findByBoardId(@Param("id") long id);
 //    BoardMasterVO getById(@Param("boardNo") int boardNo);  //JpaRepository 제공
 //    BoardMasterVO findById(@Param("boardNo") int boardNo);  //JpaRepository 제공
 
@@ -42,7 +42,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer>, 
     @Transactional
     @Modifying
     @Query(value="UPDATE BoardMasterVO SET boardCount = :count WHERE boardNo = :id")
-    int updateBoardId(@Param("id") int id, @Param("count") int count);
+    int updateBoardId(@Param("id") long id, @Param("count") int count);
 
     //updateDetail
     @Transactional
@@ -54,7 +54,7 @@ public interface BoardRepository extends JpaRepository<BoardMasterVO, Integer>, 
     @Transactional
     @Modifying
     @Query(value="UPDATE BoardMasterVO SET isDel = :isDel, modifiedDate = CURRENT_TIMESTAMP WHERE boardNo = :id")
-    int deleteBoard(int id, String isDel);
+    int deleteBoard(long id, String isDel);
 }
 
 
