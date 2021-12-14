@@ -45,7 +45,7 @@ public class TodoSpecification {
     }
 
     // 2) like
-    public static <T> Specification<T> likeEmpName(String empName) {
+    public static <T> Specification<T> likeEmpNames(String empName) {
         return new Specification<T>() {
             @Override
             public Predicate toPredicate(Root<T> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) {
