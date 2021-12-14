@@ -17,6 +17,9 @@ public class testRepository {
 
     @PersistenceContext
     EntityManager entityManager;
+    
+    Session session = entityManager.unwrap(Session.class);
+
 //    public SessionFactory sessionFactory;
 //    Session session = sessionFactory.getCurrentSession();
 //
@@ -25,7 +28,7 @@ public class testRepository {
         str.append("SELECT BOARD_TITLE ");
         str.append("FROM BOARD_MASTER ");
 
-        Query query = (Query) entityManager.createQuery(str.toString()).getParameter(t.getBoardTitle());
+        Query query = (Query) session.createQuery(str.toString()).getParameter(t.getBoardTitle());
 
         List<Map<String,Object>> result = query.getResultList();
         return result;
