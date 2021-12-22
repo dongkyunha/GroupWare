@@ -3,11 +3,9 @@ package com.example.groupware.repository.test;
 import com.example.groupware.entity.board.BoardMasterVO;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Map;
