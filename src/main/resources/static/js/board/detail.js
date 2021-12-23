@@ -41,7 +41,7 @@ let Event = (function () {
                     boardNo : jQuery('#boardNo').val()
                 };
 
-                $.ajax({
+                jQuery.ajax({
                     url: "/board/delete",
                     dataType: "json",
                     data: params,

@@ -19,6 +19,7 @@ let main = (function(){
             console.log("자바스크립트 바인딩 테스트");
 
             Event.click();
+
         }
     }
 }());
